@@ -1,0 +1,5 @@
+Inic.c:11:6:inicializacion	8	static
+Inic.c:22:6:Init_Systick	4	static
+Inic.c:28:6:Init_GPIO_PWM	8	static
+Inic.c:34:6:Init_PWM	4	static
+Inic.c:61:6:InicializarTimer0	4	static
