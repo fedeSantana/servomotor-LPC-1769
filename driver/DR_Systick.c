@@ -2,26 +2,28 @@
  * DR_Systick.c
  *
  *  Created on: 15 ago. 2020
- *      Author: nicoc
+ *      Author: Tauro
  */
 
 #include <DR_Systick.h>
 #include "inicializacion.h"
-extern int flagTimerOn;
+#include "mqe.h"
+
 extern int flagTimerOver;
 extern int tiempo;
+extern State state;
 
 
 void SysTick_Handler(void)
 {
-
-	if (flagTimerOn == 1)
-	{
-		tiempo--;
-		if (tiempo == 0)
-		{
-			flagTimerOver = 1;
+	if (state.timerAperturaActive == TRUE){
+		state.counter--;
+		if (state.counter <= 0 && state.aperturaEnd == FALSE){
+			state.aperturaEnd = TRUE;
+			state.timerAperturaActive = FALSE;
+		}
+		else {
+		// No deberia entrar aca
 		}
 	}
-
 }
