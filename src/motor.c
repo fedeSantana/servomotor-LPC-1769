@@ -19,8 +19,9 @@
 int main(void) {
 
 	inicializacion();
-    while(1) {
 
+    while(1)
+    {
     	mqe_motor();
 
     }

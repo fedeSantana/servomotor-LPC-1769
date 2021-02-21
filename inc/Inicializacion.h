@@ -8,7 +8,7 @@
 
 
 //declaracion de la inicializacion
-
+void Init_EINT0();
 void Init_PWM(void);
 void Init_GPIO_PWM(void);
 void InicializarTimer0();

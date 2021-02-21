@@ -14,7 +14,7 @@
 void TIMER0_IRQHandler(void);
 
 //!< Definición de variables
-volatile State state = { INICIO, OK, FALSE, FALSE, 1000};
+volatile State state = { INICIO, FALSE, FALSE, FALSE, 10000};
 
 void mqe_motor ()
 {
@@ -23,13 +23,22 @@ void mqe_motor ()
 	{
 				case INICIO:
 					if( state.dato == OK )
+					{
 						state.value = APERTURA;
+						state.dato = FALSE;
+					}
+					break;
 				case APERTURA:
 					Iniciar_apertura();
 					state.timerAperturaActive = TRUE;
 
 					if( state.aperturaEnd )
+					{
 						state.value = CERRANDO;
+						state.aperturaEnd = FALSE;
+
+					}
+
 					break;
 
 				case CERRANDO:
@@ -45,19 +54,6 @@ void mqe_motor ()
 
 }
 
-void Iniciar_Timer10(void)
-{
-	flagTimerOn = 1;
-}
-
-void TIMER0_IRQHandler(void)
-{
-	if((T0IR == MR0)) // Si se venció el tiempo
-	{
-				T0IR |= MR0;
-				flagT0 = 1;
-	}
-}
 
 /*
 int Timer10( void )
