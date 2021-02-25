@@ -1,28 +1,41 @@
 
-
 #include "Oscilador.h"
 #include "Inicializacion.h"
 #include "Register_PWM.h"
 #include "PWM.h"
 #include "DR_Systick.h"
-
-
+#include "RegsLPC1769.h"
+#include "DR_ADC.h"
 
 void inicializacion( void )
 {
+
 
 	InicPLL();
 	Init_GPIO_PWM();
 	Init_PWM();
 	Init_Systick();
-	InicializarTimer0();
-}
+	Init_EINT0();
+	ADC_init();
 
+}
 
 void Init_Systick( void )
 {
 	STRELOAD = (STCALIB/N) - 1; // 1 miliseg con PLL a 100 MHZ.
 	STCTRL = 0x07;				// Clock sistema, interrupción habilitada, systick habilitado.
+}
+
+
+
+void Init_EINT0(void)
+{
+	SetPINSEL(2,10,1);
+	ISER0 |= 0x01 << 18;
+	EXTINT |= 0x01 << 0;
+	EXTMODE |= 0x01 << 0;
+	EXTPOLAR &= 0x01 << 0;
+
 }
 
 void Init_GPIO_PWM(void)
@@ -45,36 +58,19 @@ void Init_PWM(void)
 
 	PWM_MR0 = 20000;	// 20000uS = 20mS
 
-	PWM_MR1 = 500;		// 500uS = 5mS DUTTY
+	PWM_MR1 = 500 ;		// 1000us = 1mS DUTTY
 
 	PWM_MCR = 1 << 1;	// Restablecer PWM
 
-	PWM_LER = (1<<1) | (1<<0);	// Actualizar valores de MR0 y MR1
 
-	PWM_PCR = (1<<9);	// Habilitar salida PWM
+	PWM_LER |= (0x01<<0);
+	PWM_LER |=(0x01<<1);
 
-	PWM_TCR = (1<<1);	// Reset PWM TC & PR
+	PWM_PCR |= (1<<9);	// Habilitar salida PWM
+
+	PWM_TCR |= (1<<1);	// Reset PWM TC & PR
 
 	PWM_TCR = (1<<0) | (1<<3);	// Habilitar contador y modo PWM
 }
-
-void InicializarTimer0(void)
-{
-
-	PCONP		|= (1<<1);
-	PCLKSEL0 	|= (1<<2);
-	T0PR 		= PR;
-	T0MR0 		= 2000000;
-	T0CTCR 		&= TIMER;
-	T0MCR 		&= CLR_MTCH_CONFIG;
-	T0MCR 		|= (1<<0);
-	T0MCR 		|= (1<<1);
-	T0TCR 		&= CLEAR_RST_EN;
-	T0TCR 		|= (1<<1);
-	T0TCR 		&= TIMER_RST_OFF;
-	T0TCR 		|= (1<<0);
-	ISER0 		|= (1<<1);
-}
-
 
 

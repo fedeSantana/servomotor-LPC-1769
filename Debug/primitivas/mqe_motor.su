@@ -1,3 +1,2 @@
-mqe_motor.c:23:6:mqe_motor	8	static
-mqe_motor.c:52:6:Iniciar_Timer10	4	static
-mqe_motor.c:57:6:TIMER0_IRQHandler	4	static
+mqe_motor.c:20:6:mqe_motor	8	static
+mqe_motor.c:76:10:temp	8	static

@@ -24,7 +24,7 @@ void Iniciar_apertura( void )
 {
 	//!< Codigo propio de la funcion
 
-	PWM_MR1 = 2500;		// 2500uS = 2500mS DUTTY
+	PWM_MR1 = 2000;		// 2000uS = 2mS DUTTY
 
 	// Actualizar valores de MR1
 	PWM_LER|= (1<<1);	// Actualizar valores de MR1
@@ -42,7 +42,7 @@ void Iniciar_cerrando( void )
 	//!< Codigo propio de la funcion
 
 
-		PWM_MR1 = 500;		// 500uS = 0,5mS DUTTY
+		PWM_MR1 = 500;		// 1000uS = 1mS DUTTY
 
 		// Actualizar valores de MR1
 		PWM_LER |= (1<<1);

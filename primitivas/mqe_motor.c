@@ -8,30 +8,61 @@
 #include "Regs_LPC176x.h"
 #include "Register_PWM.h"
 #include "Inicializacion.h"
-
+#include "DR_ADC.h"
+#define FIN 9
 
 //!< Definición de Funciones
-void TIMER0_IRQHandler(void);
+
 
 //!< Definición de variables
-volatile State state = { INICIO, OK, FALSE, FALSE, 1000};
+volatile State state = { INICIO, FALSE, FALSE, FALSE, 300, 0};
 
 void mqe_motor ()
 {
+	state.temperatura = temp();
+
 
 	switch(state.value)
 	{
+		case INICIO:
+			if( state.temperatura!=0)
+			{
+				state.value= FIN;
+			}
+			break;
+		case FIN:
+			state.value = INICIO;
+	}
+
+	/*
+	}
 				case INICIO:
 					if( state.dato == OK )
+					{
 						state.value = APERTURA;
+						state.dato = FALSE;
+					}
+					break;
 				case APERTURA:
 					Iniciar_apertura();
 					state.timerAperturaActive = TRUE;
+					state.value = INTERMEDIO;
 
 					if( state.aperturaEnd )
+					{
 						state.value = CERRANDO;
-					break;
+						state.aperturaEnd = FALSE;
 
+					}
+
+					break;
+				case INTERMEDIO:
+					if(state.aperturaEnd)
+					{
+						state.value = CERRANDO;
+						state.aperturaEnd = FALSE;
+					}
+					break;
 				case CERRANDO:
 
 					Iniciar_cerrando();
@@ -39,34 +70,13 @@ void mqe_motor ()
 
 					break;
 
-				default: state.value = APERTURA;
-
-	}
-
+				default: state.value = INICIO;*/
 }
 
-void Iniciar_Timer10(void)
+uint32_t temp (void)
 {
-	flagTimerOn = 1;
+	return ADC_get_average()/12;
+
 }
 
-void TIMER0_IRQHandler(void)
-{
-	if((T0IR == MR0)) // Si se venció el tiempo
-	{
-				T0IR |= MR0;
-				flagT0 = 1;
-	}
-}
 
-/*
-int Timer10( void )
-{
-	int res = 0 ;
-
-	if(tiempo == 0)
-		res = 1;
-
-	return res;
-}
-*/

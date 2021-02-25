@@ -4,11 +4,12 @@
 #define INICIALIZACION_H_
 
 #include "Regs_LPC176x.h"
-#include "RegsLPC1769.h"
+
 
 
 //declaracion de la inicializacion
-
+void InitADC(void);
+void Init_EINT0();
 void Init_PWM(void);
 void Init_GPIO_PWM(void);
 void InicializarTimer0();

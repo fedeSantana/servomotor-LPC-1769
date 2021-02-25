@@ -15,15 +15,17 @@ Discarded input sections
  .data          0x00000000        0x0 ./src/crp.o
  .bss           0x00000000        0x0 ./src/crp.o
  .debug_macro   0x00000000      0xaa8 ./src/crp.o
- .group         0x00000000        0xc ./src/motor.o
- .group         0x00000000        0xc ./src/motor.o
- .group         0x00000000        0xc ./src/motor.o
- .group         0x00000000        0xc ./src/motor.o
- .group         0x00000000        0xc ./src/motor.o
- .text          0x00000000        0x0 ./src/motor.o
- .data          0x00000000        0x0 ./src/motor.o
- .bss           0x00000000        0x0 ./src/motor.o
- .debug_macro   0x00000000      0xaa8 ./src/motor.o
+ .group         0x00000000        0xc ./src/motor3.o
+ .group         0x00000000        0xc ./src/motor3.o
+ .group         0x00000000        0xc ./src/motor3.o
+ .group         0x00000000        0xc ./src/motor3.o
+ .group         0x00000000        0xc ./src/motor3.o
+ .text          0x00000000        0x0 ./src/motor3.o
+ .data          0x00000000        0x0 ./src/motor3.o
+ .bss           0x00000000        0x0 ./src/motor3.o
+ .debug_macro   0x00000000      0xaa8 ./src/motor3.o
+ .group         0x00000000        0xc ./primitivas/mqe_motor.o
+ .group         0x00000000        0xc ./primitivas/mqe_motor.o
  .group         0x00000000        0xc ./primitivas/mqe_motor.o
  .group         0x00000000        0xc ./primitivas/mqe_motor.o
  .group         0x00000000        0xc ./primitivas/mqe_motor.o
@@ -32,15 +34,16 @@ Discarded input sections
  .text          0x00000000        0x0 ./primitivas/mqe_motor.o
  .data          0x00000000        0x0 ./primitivas/mqe_motor.o
  .bss           0x00000000        0x0 ./primitivas/mqe_motor.o
- .data.dato     0x00000000        0x1 ./primitivas/mqe_motor.o
- .bss.flagTimerOn
+ .bss.ADC_buffer
+                0x00000000     0x3ffc ./primitivas/mqe_motor.o
+ .bss.ADC_buffer_index
                 0x00000000        0x4 ./primitivas/mqe_motor.o
- .text.Iniciar_Timer10
-                0x00000000       0x18 ./primitivas/mqe_motor.o
+ .bss.ADC_average
+                0x00000000        0x4 ./primitivas/mqe_motor.o
  .debug_macro   0x00000000      0xaa8 ./primitivas/mqe_motor.o
+ .debug_macro   0x00000000       0x10 ./primitivas/mqe_motor.o
  .debug_macro   0x00000000       0x3a ./primitivas/mqe_motor.o
  .debug_macro   0x00000000      0x4b9 ./primitivas/mqe_motor.o
- .debug_macro   0x00000000      0x549 ./primitivas/mqe_motor.o
  .group         0x00000000        0xc ./driver/CONFIG.o
  .group         0x00000000        0xc ./driver/CONFIG.o
  .group         0x00000000        0xc ./driver/CONFIG.o
@@ -51,8 +54,7 @@ Discarded input sections
                 0x00000000       0x80 ./driver/CONFIG.o
  .debug_macro   0x00000000      0xaa8 ./driver/CONFIG.o
  .debug_macro   0x00000000      0x4b9 ./driver/CONFIG.o
- .debug_macro   0x00000000      0x549 ./driver/CONFIG.o
- .group         0x00000000        0xc ./driver/DR_Systick.o
+ .debug_macro   0x00000000      0x413 ./driver/CONFIG.o
  .group         0x00000000        0xc ./driver/DR_Systick.o
  .group         0x00000000        0xc ./driver/DR_Systick.o
  .group         0x00000000        0xc ./driver/DR_Systick.o
@@ -60,8 +62,7 @@ Discarded input sections
  .data          0x00000000        0x0 ./driver/DR_Systick.o
  .bss           0x00000000        0x0 ./driver/DR_Systick.o
  .debug_macro   0x00000000      0xaa8 ./driver/DR_Systick.o
- .debug_macro   0x00000000      0x4b9 ./driver/DR_Systick.o
- .debug_macro   0x00000000      0x549 ./driver/DR_Systick.o
+ .debug_macro   0x00000000       0x10 ./driver/DR_Systick.o
  .debug_macro   0x00000000       0x3a ./driver/DR_Systick.o
  .group         0x00000000        0xc ./driver/GPIO.o
  .group         0x00000000        0xc ./driver/GPIO.o
@@ -77,12 +78,12 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x30 ./driver/GPIO.o
  .debug_ranges  0x00000000       0x20 ./driver/GPIO.o
- .debug_macro   0x00000000       0x35 ./driver/GPIO.o
+ .debug_macro   0x00000000       0x31 ./driver/GPIO.o
  .debug_macro   0x00000000      0xaa8 ./driver/GPIO.o
  .debug_macro   0x00000000      0x4b9 ./driver/GPIO.o
- .debug_macro   0x00000000      0x549 ./driver/GPIO.o
- .debug_line    0x00000000      0x122 ./driver/GPIO.o
- .debug_str     0x00000000     0x4ba1 ./driver/GPIO.o
+ .debug_macro   0x00000000      0x413 ./driver/GPIO.o
+ .debug_line    0x00000000      0x135 ./driver/GPIO.o
+ .debug_str     0x00000000     0x497f ./driver/GPIO.o
  .comment       0x00000000       0x4d ./driver/GPIO.o
  .debug_frame   0x00000000       0x88 ./driver/GPIO.o
  .ARM.attributes
@@ -93,12 +94,22 @@ Discarded input sections
  .group         0x00000000        0xc ./driver/Inic.o
  .group         0x00000000        0xc ./driver/Inic.o
  .group         0x00000000        0xc ./driver/Inic.o
+ .group         0x00000000        0xc ./driver/Inic.o
+ .group         0x00000000        0xc ./driver/Inic.o
  .text          0x00000000        0x0 ./driver/Inic.o
  .data          0x00000000        0x0 ./driver/Inic.o
  .bss           0x00000000        0x0 ./driver/Inic.o
+ .bss.ADC_buffer
+                0x00000000     0x3ffc ./driver/Inic.o
+ .bss.ADC_buffer_index
+                0x00000000        0x4 ./driver/Inic.o
+ .bss.ADC_average
+                0x00000000        0x4 ./driver/Inic.o
  .debug_macro   0x00000000      0xaa8 ./driver/Inic.o
  .debug_macro   0x00000000      0x4b9 ./driver/Inic.o
- .debug_macro   0x00000000      0x549 ./driver/Inic.o
+ .debug_macro   0x00000000      0x413 ./driver/Inic.o
+ .debug_macro   0x00000000       0xbe ./driver/Inic.o
+ .debug_macro   0x00000000       0x10 ./driver/Inic.o
  .group         0x00000000        0xc ./driver/Oscilador.o
  .group         0x00000000        0xc ./driver/Oscilador.o
  .group         0x00000000        0xc ./driver/Oscilador.o
@@ -106,7 +117,7 @@ Discarded input sections
  .data          0x00000000        0x0 ./driver/Oscilador.o
  .bss           0x00000000        0x0 ./driver/Oscilador.o
  .debug_macro   0x00000000      0xaa8 ./driver/Oscilador.o
- .debug_macro   0x00000000      0x549 ./driver/Oscilador.o
+ .debug_macro   0x00000000      0x413 ./driver/Oscilador.o
  .debug_macro   0x00000000       0xf4 ./driver/Oscilador.o
  .group         0x00000000        0xc ./driver/PWM_Salidas.o
  .group         0x00000000        0xc ./driver/PWM_Salidas.o
@@ -116,11 +127,56 @@ Discarded input sections
  .text          0x00000000        0x0 ./driver/PWM_Salidas.o
  .data          0x00000000        0x0 ./driver/PWM_Salidas.o
  .bss           0x00000000        0x0 ./driver/PWM_Salidas.o
+ .text.Iniciar_apertura
+                0x00000000       0x28 ./driver/PWM_Salidas.o
+ .text.Iniciar_cerrando
+                0x00000000       0x28 ./driver/PWM_Salidas.o
+ .debug_info    0x00000000       0x80 ./driver/PWM_Salidas.o
+ .debug_abbrev  0x00000000       0x52 ./driver/PWM_Salidas.o
+ .debug_aranges
+                0x00000000       0x28 ./driver/PWM_Salidas.o
+ .debug_ranges  0x00000000       0x18 ./driver/PWM_Salidas.o
+ .debug_macro   0x00000000       0x43 ./driver/PWM_Salidas.o
  .debug_macro   0x00000000      0xaa8 ./driver/PWM_Salidas.o
  .debug_macro   0x00000000      0x4b9 ./driver/PWM_Salidas.o
- .debug_macro   0x00000000      0x549 ./driver/PWM_Salidas.o
+ .debug_macro   0x00000000      0x413 ./driver/PWM_Salidas.o
  .debug_macro   0x00000000       0xbe ./driver/PWM_Salidas.o
  .debug_macro   0x00000000      0x148 ./driver/PWM_Salidas.o
+ .debug_line    0x00000000       0xe2 ./driver/PWM_Salidas.o
+ .debug_str     0x00000000     0x4e3f ./driver/PWM_Salidas.o
+ .comment       0x00000000       0x4d ./driver/PWM_Salidas.o
+ .debug_frame   0x00000000       0x50 ./driver/PWM_Salidas.o
+ .ARM.attributes
+                0x00000000       0x2d ./driver/PWM_Salidas.o
+ .group         0x00000000        0xc ./driver/adc.o
+ .group         0x00000000        0xc ./driver/adc.o
+ .group         0x00000000        0xc ./driver/adc.o
+ .group         0x00000000        0xc ./driver/adc.o
+ .group         0x00000000        0xc ./driver/adc.o
+ .text          0x00000000        0x0 ./driver/adc.o
+ .data          0x00000000        0x0 ./driver/adc.o
+ .bss           0x00000000        0x0 ./driver/adc.o
+ .text.ADC_start_conversion
+                0x00000000       0x20 ./driver/adc.o
+ .text.TimeADC  0x00000000       0x40 ./driver/adc.o
+ .bss.adc_counter.3825
+                0x00000000        0x4 ./driver/adc.o
+ .debug_macro   0x00000000      0xaa8 ./driver/adc.o
+ .debug_macro   0x00000000       0x10 ./driver/adc.o
+ .debug_macro   0x00000000       0x10 ./driver/adc.o
+ .debug_macro   0x00000000      0x413 ./driver/adc.o
+ .debug_macro   0x00000000      0x4b9 ./driver/adc.o
+ .group         0x00000000        0xc ./driver/extint.o
+ .group         0x00000000        0xc ./driver/extint.o
+ .group         0x00000000        0xc ./driver/extint.o
+ .group         0x00000000        0xc ./driver/extint.o
+ .text          0x00000000        0x0 ./driver/extint.o
+ .data          0x00000000        0x0 ./driver/extint.o
+ .bss           0x00000000        0x0 ./driver/extint.o
+ .debug_macro   0x00000000      0xaa8 ./driver/extint.o
+ .debug_macro   0x00000000      0x413 ./driver/extint.o
+ .debug_macro   0x00000000       0x10 ./driver/extint.o
+ .debug_macro   0x00000000       0x3a ./driver/extint.o
  .text          0x00000000        0x0 c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
  .data          0x00000000        0x0 c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
  .bss           0x00000000        0x0 c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
@@ -137,7 +193,7 @@ Linker script and memory map
 
 LOAD ./src/cr_startup_lpc175x_6x.o
 LOAD ./src/crp.o
-LOAD ./src/motor.o
+LOAD ./src/motor3.o
 LOAD ./primitivas/mqe_motor.o
 LOAD ./driver/CONFIG.o
 LOAD ./driver/DR_Systick.o
@@ -145,6 +201,8 @@ LOAD ./driver/GPIO.o
 LOAD ./driver/Inic.o
 LOAD ./driver/Oscilador.o
 LOAD ./driver/PWM_Salidas.o
+LOAD ./driver/adc.o
+LOAD ./driver/extint.o
 START GROUP
 LOAD c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a
 LOAD c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/thumb/v7-m/nofp\libcr_eabihelpers.a
@@ -163,7 +221,7 @@ END GROUP
                 0x20084000                __top_RamAHB32 = 0x20084000
                 0x20084000                __top_RAM2 = 0x20084000
 
-.text           0x00000000      0x7b0
+.text           0x00000000      0x864
  FILL mask 0xff
                 0x00000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -172,16 +230,16 @@ END GROUP
                 0x000000cc                . = ALIGN (0x4)
                 0x000000cc                __section_table_start = .
                 0x000000cc                __data_section_table = .
-                0x000000cc        0x4 LONG 0x7b0 LOADADDR (.data)
+                0x000000cc        0x4 LONG 0x864 LOADADDR (.data)
                 0x000000d0        0x4 LONG 0x10000000 ADDR (.data)
-                0x000000d4        0x4 LONG 0x14 SIZEOF (.data)
-                0x000000d8        0x4 LONG 0x7b0 LOADADDR (.data_RAM2)
+                0x000000d4        0x4 LONG 0x1c SIZEOF (.data)
+                0x000000d8        0x4 LONG 0x864 LOADADDR (.data_RAM2)
                 0x000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x000000e4                __data_section_table_end = .
                 0x000000e4                __bss_section_table = .
-                0x000000e4        0x4 LONG 0x10000014 ADDR (.bss)
-                0x000000e8        0x4 LONG 0x4 SIZEOF (.bss)
+                0x000000e4        0x4 LONG 0x1000001c ADDR (.bss)
+                0x000000e8        0x4 LONG 0x4008 SIZEOF (.bss)
                 0x000000ec        0x4 LONG 0x2007c000 ADDR (.bss_RAM2)
                 0x000000f0        0x4 LONG 0x0 SIZEOF (.bss_RAM2)
                 0x000000f4                __bss_section_table_end = .
@@ -215,12 +273,12 @@ END GROUP
                 0x0000021a                I2S_IRQHandler
                 0x0000021a                I2C2_IRQHandler
                 0x0000021a                RTC_IRQHandler
+                0x0000021a                TIMER0_IRQHandler
                 0x0000021a                SPI_IRQHandler
                 0x0000021a                RIT_IRQHandler
                 0x0000021a                EINT1_IRQHandler
                 0x0000021a                TIMER1_IRQHandler
                 0x0000021a                UART2_IRQHandler
-                0x0000021a                ADC_IRQHandler
                 0x0000021a                SSP1_IRQHandler
                 0x0000021a                USB_IRQHandler
                 0x0000021a                BOD_IRQHandler
@@ -228,7 +286,6 @@ END GROUP
                 0x0000021a                WDT_IRQHandler
                 0x0000021a                SSP0_IRQHandler
                 0x0000021a                QEI_IRQHandler
-                0x0000021a                EINT0_IRQHandler
                 0x0000021a                CAN_IRQHandler
                 0x0000021a                DMA_IRQHandler
                 0x0000021a                TIMER2_IRQHandler
@@ -244,81 +301,86 @@ END GROUP
                 0x00000300                PROVIDE (__CRP_WORD_END__ = .)
                 0x00000001                ASSERT (! ((__CRP_WORD_START__ == __CRP_WORD_END__)), Linker CRP Enabled, but no CRP_WORD provided within application)
  *(.text*)
- .text.main     0x00000300        0xe ./src/motor.o
+ .text.main     0x00000300        0xe ./src/motor3.o
                 0x00000300                main
  *fill*         0x0000030e        0x2 ff
  .text.mqe_motor
-                0x00000310       0x60 ./primitivas/mqe_motor.o
+                0x00000310       0x40 ./primitivas/mqe_motor.o
                 0x00000310                mqe_motor
- .text.TIMER0_IRQHandler
-                0x00000370       0x30 ./primitivas/mqe_motor.o
-                0x00000370                TIMER0_IRQHandler
+ .text.temp     0x00000350       0x1c ./primitivas/mqe_motor.o
+                0x00000350                temp
  .text.SetPINSEL
-                0x000003a0       0x8a ./driver/CONFIG.o
-                0x000003a0                SetPINSEL
- *fill*         0x0000042a        0x2 ff
+                0x0000036c       0x8a ./driver/CONFIG.o
+                0x0000036c                SetPINSEL
  .text.SysTick_Handler
-                0x0000042c       0x40 ./driver/DR_Systick.o
-                0x0000042c                SysTick_Handler
+                0x000003f6        0xc ./driver/DR_Systick.o
+                0x000003f6                SysTick_Handler
  .text.inicializacion
-                0x0000046c       0x1c ./driver/Inic.o
-                0x0000046c                inicializacion
+                0x00000402       0x20 ./driver/Inic.o
+                0x00000402                inicializacion
+ *fill*         0x00000422        0x2 ff
  .text.Init_Systick
-                0x00000488       0x2c ./driver/Inic.o
-                0x00000488                Init_Systick
+                0x00000424       0x20 ./driver/Inic.o
+                0x00000424                Init_Systick
+ .text.Init_EINT0
+                0x00000444       0x54 ./driver/Inic.o
+                0x00000444                Init_EINT0
  .text.Init_GPIO_PWM
-                0x000004b4       0x12 ./driver/Inic.o
-                0x000004b4                Init_GPIO_PWM
- *fill*         0x000004c6        0x2 ff
+                0x00000498       0x12 ./driver/Inic.o
+                0x00000498                Init_GPIO_PWM
+ *fill*         0x000004aa        0x2 ff
  .text.Init_PWM
-                0x000004c8       0x90 ./driver/Inic.o
-                0x000004c8                Init_PWM
- .text.InicializarTimer0
-                0x00000558       0xc4 ./driver/Inic.o
-                0x00000558                InicializarTimer0
- .text.InicPLL  0x0000061c      0x140 ./driver/Oscilador.o
-                0x0000061c                InicPLL
- .text.Iniciar_apertura
-                0x0000075c       0x28 ./driver/PWM_Salidas.o
-                0x0000075c                Iniciar_apertura
- .text.Iniciar_cerrando
-                0x00000784       0x28 ./driver/PWM_Salidas.o
-                0x00000784                Iniciar_cerrando
+                0x000004ac       0xac ./driver/Inic.o
+                0x000004ac                Init_PWM
+ .text.InicPLL  0x00000558      0x140 ./driver/Oscilador.o
+                0x00000558                InicPLL
+ .text.ADC_init
+                0x00000698       0xe8 ./driver/adc.o
+                0x00000698                ADC_init
+ .text.ADC_get_average
+                0x00000780       0x14 ./driver/adc.o
+                0x00000780                ADC_get_average
+ .text.ADC_IRQHandler
+                0x00000794       0xa4 ./driver/adc.o
+                0x00000794                ADC_IRQHandler
+ .text.EINT0_IRQHandler
+                0x00000838       0x28 ./driver/extint.o
+                0x00000838                EINT0_IRQHandler
  .text.__weak_main
-                0x000007ac        0x4 c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
-                0x000007ac                __weak_main
-                0x000007ac                __main
+                0x00000860        0x4 c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
+                0x00000860                __weak_main
+                0x00000860                __main
  *(.rodata .rodata.* .constdata .constdata.*)
-                0x000007b0                . = ALIGN (0x4)
+                0x00000864                . = ALIGN (0x4)
 
-.glue_7         0x000007b0        0x0
- .glue_7        0x000007b0        0x0 linker stubs
+.glue_7         0x00000864        0x0
+ .glue_7        0x00000864        0x0 linker stubs
 
-.glue_7t        0x000007b0        0x0
- .glue_7t       0x000007b0        0x0 linker stubs
+.glue_7t        0x00000864        0x0
+ .glue_7t       0x00000864        0x0 linker stubs
 
-.vfp11_veneer   0x000007b0        0x0
- .vfp11_veneer  0x000007b0        0x0 linker stubs
+.vfp11_veneer   0x00000864        0x0
+ .vfp11_veneer  0x00000864        0x0 linker stubs
 
-.v4_bx          0x000007b0        0x0
- .v4_bx         0x000007b0        0x0 linker stubs
+.v4_bx          0x00000864        0x0
+ .v4_bx         0x00000864        0x0 linker stubs
 
-.iplt           0x000007b0        0x0
- .iplt          0x000007b0        0x0 ./src/cr_startup_lpc175x_6x.o
+.iplt           0x00000864        0x0
+ .iplt          0x00000864        0x0 ./src/cr_startup_lpc175x_6x.o
 
-.rel.dyn        0x000007b0        0x0
- .rel.iplt      0x000007b0        0x0 ./src/cr_startup_lpc175x_6x.o
+.rel.dyn        0x00000864        0x0
+ .rel.iplt      0x00000864        0x0 ./src/cr_startup_lpc175x_6x.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x000007b0        0x0
-                0x000007b0                __exidx_start = .
+.ARM.exidx      0x00000864        0x0
+                0x00000864                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x000007b0                __exidx_end = .
-                0x000007b0                _etext = .
+                0x00000864                __exidx_end = .
+                0x00000864                _etext = .
 
-.data_RAM2      0x2007c000        0x0 load address 0x000007b0
+.data_RAM2      0x2007c000        0x0 load address 0x00000864
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM2 = .)
                 [!provide]                PROVIDE (__start_data_RamAHB32 = .)
@@ -339,7 +401,7 @@ END GROUP
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _end_uninit_RESERVED = .
 
-.data           0x10000000       0x14 load address 0x000007b0
+.data           0x10000000       0x1c load address 0x00000864
  FILL mask 0xff
                 0x10000000                _data = .
                 [!provide]                PROVIDE (__start_data_RAM = .)
@@ -350,15 +412,16 @@ END GROUP
  *(DataQuickAccess)
  *(RamFunction)
  *(.data*)
- .data.state    0x10000000       0x14 ./primitivas/mqe_motor.o
+ .data.state    0x10000000       0x18 ./primitivas/mqe_motor.o
                 0x10000000                state
-                0x10000014                . = ALIGN (0x4)
-                0x10000014                _edata = .
+ .data.ADC      0x10000018        0x4 ./driver/adc.o
+                0x1000001c                . = ALIGN (0x4)
+                0x1000001c                _edata = .
                 [!provide]                PROVIDE (__end_data_RAM = .)
                 [!provide]                PROVIDE (__end_data_RamLoc32 = .)
 
-.igot.plt       0x10000014        0x0 load address 0x000007c4
- .igot.plt      0x10000014        0x0 ./src/cr_startup_lpc175x_6x.o
+.igot.plt       0x1000001c        0x0 load address 0x00000880
+ .igot.plt      0x1000001c        0x0 ./src/cr_startup_lpc175x_6x.o
 
 .bss_RAM2       0x2007c000        0x0
                 [!provide]                PROVIDE (__start_bss_RAM2 = .)
@@ -371,16 +434,22 @@ END GROUP
                 [!provide]                PROVIDE (__end_bss_RAM2 = .)
                 [!provide]                PROVIDE (__end_bss_RamAHB32 = .)
 
-.bss            0x10000014        0x4
-                0x10000014                _bss = .
+.bss            0x1000001c     0x4008
+                0x1000001c                _bss = .
                 [!provide]                PROVIDE (__start_bss_RAM = .)
                 [!provide]                PROVIDE (__start_bss_RamLoc32 = .)
  *(.bss*)
- .bss.flagT0    0x10000014        0x4 ./primitivas/mqe_motor.o
-                0x10000014                flagT0
+ .bss.ADC_buffer
+                0x1000001c     0x3ffc ./driver/adc.o
+ .bss.ADC_buffer_index
+                0x10004018        0x4 ./driver/adc.o
+ .bss.ADC_average
+                0x1000401c        0x4 ./driver/adc.o
+ .bss.acummulator.3820
+                0x10004020        0x4 ./driver/adc.o
  *(COMMON)
-                0x10000018                . = ALIGN (0x4)
-                0x10000018                _ebss = .
+                0x10004024                . = ALIGN (0x4)
+                0x10004024                _ebss = .
                 [!provide]                PROVIDE (__end_bss_RAM = .)
                 [!provide]                PROVIDE (__end_bss_RamLoc32 = .)
                 [!provide]                PROVIDE (end = .)
@@ -396,139 +465,151 @@ END GROUP
                 [!provide]                PROVIDE (__end_noinit_RAM2 = .)
                 [!provide]                PROVIDE (__end_noinit_RamAHB32 = .)
 
-.noinit         0x10000018        0x0
-                0x10000018                _noinit = .
+.noinit         0x10004024        0x0
+                0x10004024                _noinit = .
                 [!provide]                PROVIDE (__start_noinit_RAM = .)
                 [!provide]                PROVIDE (__start_noinit_RamLoc32 = .)
  *(.noinit*)
-                0x10000018                . = ALIGN (0x4)
-                0x10000018                _end_noinit = .
+                0x10004024                . = ALIGN (0x4)
+                0x10004024                _end_noinit = .
                 [!provide]                PROVIDE (__end_noinit_RAM = .)
                 [!provide]                PROVIDE (__end_noinit_RamLoc32 = .)
                 [!provide]                PROVIDE (_pvHeapStart = DEFINED (__user_heap_base)?__user_heap_base:.)
                 0x10008000                PROVIDE (_vStackTop = DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc32 - 0x0))
                 0xefff74da                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
                 0x00000000                _image_start = LOADADDR (.text)
-                0x000007c4                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x000007c4                _image_size = (_image_end - _image_start)
+                0x00000880                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x00000880                _image_size = (_image_end - _image_start)
 OUTPUT(motor.axf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x00000000      0x86c
+.debug_info     0x00000000      0xf06
  .debug_info    0x00000000      0x276 ./src/cr_startup_lpc175x_6x.o
  .debug_info    0x00000276       0x40 ./src/crp.o
- .debug_info    0x000002b6       0x5c ./src/motor.o
- .debug_info    0x00000312      0x141 ./primitivas/mqe_motor.o
- .debug_info    0x00000453       0xdb ./driver/CONFIG.o
- .debug_info    0x0000052e       0xd7 ./driver/DR_Systick.o
- .debug_info    0x00000605      0x18a ./driver/Inic.o
- .debug_info    0x0000078f       0x5d ./driver/Oscilador.o
- .debug_info    0x000007ec       0x80 ./driver/PWM_Salidas.o
+ .debug_info    0x000002b6       0x5c ./src/motor3.o
+ .debug_info    0x00000312      0x14a ./primitivas/mqe_motor.o
+ .debug_info    0x0000045c       0xdb ./driver/CONFIG.o
+ .debug_info    0x00000537       0xe9 ./driver/DR_Systick.o
+ .debug_info    0x00000620      0x1e5 ./driver/Inic.o
+ .debug_info    0x00000805       0x5d ./driver/Oscilador.o
+ .debug_info    0x00000862      0x5cc ./driver/adc.o
+ .debug_info    0x00000e2e       0xd8 ./driver/extint.o
 
-.debug_abbrev   0x00000000      0x4d9
+.debug_abbrev   0x00000000      0x6bd
  .debug_abbrev  0x00000000      0x12a ./src/cr_startup_lpc175x_6x.o
  .debug_abbrev  0x0000012a       0x38 ./src/crp.o
- .debug_abbrev  0x00000162       0x49 ./src/motor.o
- .debug_abbrev  0x000001ab       0xac ./primitivas/mqe_motor.o
- .debug_abbrev  0x00000257       0x89 ./driver/CONFIG.o
- .debug_abbrev  0x000002e0       0x8b ./driver/DR_Systick.o
- .debug_abbrev  0x0000036b       0xd1 ./driver/Inic.o
- .debug_abbrev  0x0000043c       0x4b ./driver/Oscilador.o
- .debug_abbrev  0x00000487       0x52 ./driver/PWM_Salidas.o
+ .debug_abbrev  0x00000162       0x49 ./src/motor3.o
+ .debug_abbrev  0x000001ab       0xd1 ./primitivas/mqe_motor.o
+ .debug_abbrev  0x0000027c       0x89 ./driver/CONFIG.o
+ .debug_abbrev  0x00000305       0x8b ./driver/DR_Systick.o
+ .debug_abbrev  0x00000390      0x103 ./driver/Inic.o
+ .debug_abbrev  0x00000493       0x4b ./driver/Oscilador.o
+ .debug_abbrev  0x000004de      0x154 ./driver/adc.o
+ .debug_abbrev  0x00000632       0x8b ./driver/extint.o
 
-.debug_aranges  0x00000000      0x1b8
+.debug_aranges  0x00000000      0x1e8
  .debug_aranges
                 0x00000000       0x80 ./src/cr_startup_lpc175x_6x.o
  .debug_aranges
                 0x00000080       0x18 ./src/crp.o
  .debug_aranges
-                0x00000098       0x20 ./src/motor.o
+                0x00000098       0x20 ./src/motor3.o
  .debug_aranges
-                0x000000b8       0x30 ./primitivas/mqe_motor.o
+                0x000000b8       0x28 ./primitivas/mqe_motor.o
  .debug_aranges
-                0x000000e8       0x28 ./driver/CONFIG.o
+                0x000000e0       0x28 ./driver/CONFIG.o
  .debug_aranges
-                0x00000110       0x20 ./driver/DR_Systick.o
+                0x00000108       0x20 ./driver/DR_Systick.o
  .debug_aranges
-                0x00000130       0x40 ./driver/Inic.o
+                0x00000128       0x40 ./driver/Inic.o
  .debug_aranges
-                0x00000170       0x20 ./driver/Oscilador.o
+                0x00000168       0x20 ./driver/Oscilador.o
  .debug_aranges
-                0x00000190       0x28 ./driver/PWM_Salidas.o
+                0x00000188       0x40 ./driver/adc.o
+ .debug_aranges
+                0x000001c8       0x20 ./driver/extint.o
 
-.debug_ranges   0x00000000      0x120
+.debug_ranges   0x00000000      0x140
  .debug_ranges  0x00000000       0x70 ./src/cr_startup_lpc175x_6x.o
- .debug_ranges  0x00000070       0x10 ./src/motor.o
- .debug_ranges  0x00000080       0x20 ./primitivas/mqe_motor.o
- .debug_ranges  0x000000a0       0x18 ./driver/CONFIG.o
- .debug_ranges  0x000000b8       0x10 ./driver/DR_Systick.o
- .debug_ranges  0x000000c8       0x30 ./driver/Inic.o
- .debug_ranges  0x000000f8       0x10 ./driver/Oscilador.o
- .debug_ranges  0x00000108       0x18 ./driver/PWM_Salidas.o
+ .debug_ranges  0x00000070       0x10 ./src/motor3.o
+ .debug_ranges  0x00000080       0x18 ./primitivas/mqe_motor.o
+ .debug_ranges  0x00000098       0x18 ./driver/CONFIG.o
+ .debug_ranges  0x000000b0       0x10 ./driver/DR_Systick.o
+ .debug_ranges  0x000000c0       0x30 ./driver/Inic.o
+ .debug_ranges  0x000000f0       0x10 ./driver/Oscilador.o
+ .debug_ranges  0x00000100       0x30 ./driver/adc.o
+ .debug_ranges  0x00000130       0x10 ./driver/extint.o
 
-.debug_macro    0x00000000     0x1b38
+.debug_macro    0x00000000     0x19df
  .debug_macro   0x00000000       0x1d ./src/cr_startup_lpc175x_6x.o
  .debug_macro   0x0000001d      0xaa8 ./src/cr_startup_lpc175x_6x.o
  .debug_macro   0x00000ac5       0x1a ./src/crp.o
  .debug_macro   0x00000adf       0x34 ./src/crp.o
- .debug_macro   0x00000b13       0x3f ./src/motor.o
- .debug_macro   0x00000b52       0x82 ./src/motor.o
- .debug_macro   0x00000bd4      0x4b9 ./src/motor.o
- .debug_macro   0x0000108d      0x549 ./src/motor.o
- .debug_macro   0x000015d6       0x3a ./src/motor.o
- .debug_macro   0x00001610       0x49 ./primitivas/mqe_motor.o
- .debug_macro   0x00001659       0xbe ./primitivas/mqe_motor.o
- .debug_macro   0x00001717       0x35 ./driver/CONFIG.o
- .debug_macro   0x0000174c       0x3a ./driver/DR_Systick.o
- .debug_macro   0x00001786       0x4c ./driver/Inic.o
- .debug_macro   0x000017d2       0xf4 ./driver/Inic.o
- .debug_macro   0x000018c6       0xc4 ./driver/Inic.o
- .debug_macro   0x0000198a      0x148 ./driver/Inic.o
- .debug_macro   0x00001ad2       0x23 ./driver/Oscilador.o
- .debug_macro   0x00001af5       0x43 ./driver/PWM_Salidas.o
+ .debug_macro   0x00000b13       0x45 ./src/motor3.o
+ .debug_macro   0x00000b58       0x82 ./src/motor3.o
+ .debug_macro   0x00000bda      0x4b9 ./src/motor3.o
+ .debug_macro   0x00001093       0x10 ./src/motor3.o
+ .debug_macro   0x000010a3       0x3a ./src/motor3.o
+ .debug_macro   0x000010dd       0x67 ./primitivas/mqe_motor.o
+ .debug_macro   0x00001144      0x413 ./primitivas/mqe_motor.o
+ .debug_macro   0x00001557       0xbe ./primitivas/mqe_motor.o
+ .debug_macro   0x00001615       0x16 ./primitivas/mqe_motor.o
+ .debug_macro   0x0000162b       0x31 ./driver/CONFIG.o
+ .debug_macro   0x0000165c       0x29 ./driver/DR_Systick.o
+ .debug_macro   0x00001685       0x74 ./driver/Inic.o
+ .debug_macro   0x000016f9       0xf4 ./driver/Inic.o
+ .debug_macro   0x000017ed      0x148 ./driver/Inic.o
+ .debug_macro   0x00001935       0x10 ./driver/Inic.o
+ .debug_macro   0x00001945       0x23 ./driver/Oscilador.o
+ .debug_macro   0x00001968       0x45 ./driver/adc.o
+ .debug_macro   0x000019ad       0x32 ./driver/extint.o
 
-.debug_line     0x00000000      0xa78
+.debug_line     0x00000000      0xc0b
  .debug_line    0x00000000      0x15f ./src/cr_startup_lpc175x_6x.o
  .debug_line    0x0000015f       0xb1 ./src/crp.o
- .debug_line    0x00000210      0x139 ./src/motor.o
- .debug_line    0x00000349      0x12d ./primitivas/mqe_motor.o
- .debug_line    0x00000476      0x107 ./driver/CONFIG.o
- .debug_line    0x0000057d       0xe2 ./driver/DR_Systick.o
- .debug_line    0x0000065f      0x1a2 ./driver/Inic.o
- .debug_line    0x00000801      0x1a8 ./driver/Oscilador.o
- .debug_line    0x000009a9       0xcf ./driver/PWM_Salidas.o
+ .debug_line    0x00000210      0x14a ./src/motor3.o
+ .debug_line    0x0000035a      0x137 ./primitivas/mqe_motor.o
+ .debug_line    0x00000491      0x11a ./driver/CONFIG.o
+ .debug_line    0x000005ab       0x96 ./driver/DR_Systick.o
+ .debug_line    0x00000641      0x1af ./driver/Inic.o
+ .debug_line    0x000007f0      0x1bb ./driver/Oscilador.o
+ .debug_line    0x000009ab      0x1b9 ./driver/adc.o
+ .debug_line    0x00000b64       0xa7 ./driver/extint.o
 
-.debug_str      0x00000000     0x5b56
- .debug_str     0x00000000     0x2f62 ./src/cr_startup_lpc175x_6x.o
-                               0x2f75 (size before relaxing)
- .debug_str     0x00002f62       0xe9 ./src/crp.o
-                               0x2e82 (size before relaxing)
- .debug_str     0x0000304b     0x2246 ./src/motor.o
-                               0x5000 (size before relaxing)
- .debug_str     0x00005291      0x2fa ./primitivas/mqe_motor.o
-                               0x4e9d (size before relaxing)
- .debug_str     0x0000558b       0x41 ./driver/CONFIG.o
-                               0x4ba4 (size before relaxing)
- .debug_str     0x000055cc       0x2c ./driver/DR_Systick.o
-                               0x4c1e (size before relaxing)
- .debug_str     0x000055f8      0x506 ./driver/Inic.o
-                               0x5304 (size before relaxing)
- .debug_str     0x00005afe       0x1e ./driver/Oscilador.o
-                               0x43b2 (size before relaxing)
- .debug_str     0x00005b1c       0x3a ./driver/PWM_Salidas.o
-                               0x500b (size before relaxing)
+.debug_str      0x00000000     0x5bfb
+ .debug_str     0x00000000     0x2f75 ./src/cr_startup_lpc175x_6x.o
+                               0x2f88 (size before relaxing)
+ .debug_str     0x00002f75       0xe9 ./src/crp.o
+                               0x2e95 (size before relaxing)
+ .debug_str     0x0000305e     0x119e ./src/motor3.o
+                               0x3f6b (size before relaxing)
+ .debug_str     0x000041fc     0x11d0 ./primitivas/mqe_motor.o
+                               0x4ce5 (size before relaxing)
+ .debug_str     0x000053cc       0x49 ./driver/CONFIG.o
+                               0x4982 (size before relaxing)
+ .debug_str     0x00005415       0x2c ./driver/DR_Systick.o
+                               0x2ec3 (size before relaxing)
+ .debug_str     0x00005441      0x564 ./driver/Inic.o
+                               0x51c3 (size before relaxing)
+ .debug_str     0x000059a5       0x1e ./driver/Oscilador.o
+                               0x4190 (size before relaxing)
+ .debug_str     0x000059c3      0x214 ./driver/adc.o
+                               0x4bd0 (size before relaxing)
+ .debug_str     0x00005bd7       0x24 ./driver/extint.o
+                               0x3d6c (size before relaxing)
 
 .comment        0x00000000       0x4c
  .comment       0x00000000       0x4c ./src/cr_startup_lpc175x_6x.o
                                  0x4d (size before relaxing)
  .comment       0x0000004c       0x4d ./src/crp.o
- .comment       0x0000004c       0x4d ./src/motor.o
+ .comment       0x0000004c       0x4d ./src/motor3.o
  .comment       0x0000004c       0x4d ./primitivas/mqe_motor.o
  .comment       0x0000004c       0x4d ./driver/CONFIG.o
  .comment       0x0000004c       0x4d ./driver/DR_Systick.o
  .comment       0x0000004c       0x4d ./driver/Inic.o
  .comment       0x0000004c       0x4d ./driver/Oscilador.o
- .comment       0x0000004c       0x4d ./driver/PWM_Salidas.o
+ .comment       0x0000004c       0x4d ./driver/adc.o
+ .comment       0x0000004c       0x4d ./driver/extint.o
  .comment       0x0000004c       0x4d c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
 
 .ARM.attributes
@@ -538,7 +619,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x0000002d       0x33 ./src/crp.o
  .ARM.attributes
-                0x00000060       0x2d ./src/motor.o
+                0x00000060       0x2d ./src/motor3.o
  .ARM.attributes
                 0x0000008d       0x2d ./primitivas/mqe_motor.o
  .ARM.attributes
@@ -550,24 +631,33 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000141       0x2d ./driver/Oscilador.o
  .ARM.attributes
-                0x0000016e       0x2d ./driver/PWM_Salidas.o
+                0x0000016e       0x2d ./driver/adc.o
  .ARM.attributes
-                0x0000019b       0x2d c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
+                0x0000019b       0x2d ./driver/extint.o
+ .ARM.attributes
+                0x000001c8       0x2d c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
 
-.debug_frame    0x00000000      0x3c0
+.debug_frame    0x00000000      0x428
  .debug_frame   0x00000000      0x170 ./src/cr_startup_lpc175x_6x.o
- .debug_frame   0x00000170       0x2c ./src/motor.o
- .debug_frame   0x0000019c       0x6c ./primitivas/mqe_motor.o
- .debug_frame   0x00000208       0x60 ./driver/CONFIG.o
- .debug_frame   0x00000268       0x30 ./driver/DR_Systick.o
- .debug_frame   0x00000298       0xa8 ./driver/Inic.o
- .debug_frame   0x00000340       0x30 ./driver/Oscilador.o
- .debug_frame   0x00000370       0x50 ./driver/PWM_Salidas.o
+ .debug_frame   0x00000170       0x2c ./src/motor3.o
+ .debug_frame   0x0000019c       0x48 ./primitivas/mqe_motor.o
+ .debug_frame   0x000001e4       0x60 ./driver/CONFIG.o
+ .debug_frame   0x00000244       0x30 ./driver/DR_Systick.o
+ .debug_frame   0x00000274       0xa4 ./driver/Inic.o
+ .debug_frame   0x00000318       0x30 ./driver/Oscilador.o
+ .debug_frame   0x00000348       0xb0 ./driver/adc.o
+ .debug_frame   0x000003f8       0x30 ./driver/extint.o
 
 Cross Reference Table
 
 Symbol                                            File
-ADC_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
+ADC_IRQHandler                                    ./driver/adc.o
+                                                  ./src/cr_startup_lpc175x_6x.o
+ADC_get_average                                   ./driver/adc.o
+                                                  ./primitivas/mqe_motor.o
+ADC_init                                          ./driver/adc.o
+                                                  ./driver/Inic.o
+ADC_start_conversion                              ./driver/adc.o
 BOD_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
 BusFault_Handler                                  ./src/cr_startup_lpc175x_6x.o
 CANActivity_IRQHandler                            ./src/cr_startup_lpc175x_6x.o
@@ -575,7 +665,8 @@ CAN_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
 CRP_WORD                                          ./src/crp.o
 DMA_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
 DebugMon_Handler                                  ./src/cr_startup_lpc175x_6x.o
-EINT0_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
+EINT0_IRQHandler                                  ./driver/extint.o
+                                                  ./src/cr_startup_lpc175x_6x.o
 EINT1_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
 EINT2_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
 EINT3_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
@@ -588,12 +679,9 @@ I2C2_IRQHandler                                   ./src/cr_startup_lpc175x_6x.o
 I2S_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
 InicPLL                                           ./driver/Oscilador.o
                                                   ./driver/Inic.o
-InicializarTimer0                                 ./driver/Inic.o
-Iniciar_Timer10                                   ./primitivas/mqe_motor.o
 Iniciar_apertura                                  ./driver/PWM_Salidas.o
-                                                  ./primitivas/mqe_motor.o
 Iniciar_cerrando                                  ./driver/PWM_Salidas.o
-                                                  ./primitivas/mqe_motor.o
+Init_EINT0                                        ./driver/Inic.o
 Init_GPIO_PWM                                     ./driver/Inic.o
 Init_PWM                                          ./driver/Inic.o
 Init_Systick                                      ./driver/Inic.o
@@ -617,14 +705,15 @@ SetDIR                                            ./driver/GPIO.o
 SetPIN                                            ./driver/GPIO.o
 SetPINMODE                                        ./driver/CONFIG.o
 SetPINSEL                                         ./driver/CONFIG.o
+                                                  ./driver/adc.o
                                                   ./driver/Inic.o
 SysTick_Handler                                   ./driver/DR_Systick.o
                                                   ./src/cr_startup_lpc175x_6x.o
-TIMER0_IRQHandler                                 ./primitivas/mqe_motor.o
-                                                  ./src/cr_startup_lpc175x_6x.o
+TIMER0_IRQHandler                                 ./src/cr_startup_lpc175x_6x.o
 TIMER1_IRQHandler                                 ./src/cr_startup_lpc175x_6x.o
 TIMER2_IRQHandler                                 ./src/cr_startup_lpc175x_6x.o
 TIMER3_IRQHandler                                 ./src/cr_startup_lpc175x_6x.o
+TimeADC                                           ./driver/adc.o
 UART0_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
 UART1_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
 UART2_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
@@ -643,15 +732,13 @@ __weak_main                                       c:/nxp/mcuxpressoide_11.3.0_52
 _vStackTop                                        ./src/cr_startup_lpc175x_6x.o
 bss_init                                          ./src/cr_startup_lpc175x_6x.o
 data_init                                         ./src/cr_startup_lpc175x_6x.o
-dato                                              ./primitivas/mqe_motor.o
-flagT0                                            ./primitivas/mqe_motor.o
-flagTimerOn                                       ./primitivas/mqe_motor.o
 g_pfnVectors                                      ./src/cr_startup_lpc175x_6x.o
 inicializacion                                    ./driver/Inic.o
-                                                  ./src/motor.o
-main                                              ./src/motor.o
+                                                  ./src/motor3.o
+main                                              ./src/motor3.o
                                                   c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
 mqe_motor                                         ./primitivas/mqe_motor.o
-                                                  ./src/motor.o
+                                                  ./src/motor3.o
 state                                             ./primitivas/mqe_motor.o
-                                                  ./driver/DR_Systick.o
+                                                  ./driver/extint.o
+temp                                              ./primitivas/mqe_motor.o

@@ -9,7 +9,9 @@
 #define MQE_H_
 
 #endif /* MQE_H_ */
+#include "DR_tipos.h"
 void mqe_motor (void);
+uint32_t temp (void);
 void Iniciar_apertura( void );
 void Iniciar_cerrando( void );
 int timerOver();
@@ -24,6 +26,7 @@ void Iniciar_Timer10(void);
 #define	APERTURA		0
 #define	CERRANDO		1
 #define	INICIO			2
+#define	INTERMEDIO		3
 #define DELAY			1000
 
 typedef struct State {
@@ -32,4 +35,5 @@ typedef struct State {
    int aperturaEnd; // Variable que define si terminó de abrir
    int timerAperturaActive; // Activador del timer
    int counter; // segundos que iran disminuyendo hassta
+   uint32_t temperatura;
 } State;

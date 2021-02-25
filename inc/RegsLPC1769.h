@@ -31,7 +31,6 @@ typedef unsigned char uint8_t;
 #define		PINSEL7		PINSEL[7]	//!< PINSEL7--->P3[31:16] 0x4002C01C)
 #define		PINSEL8		PINSEL[8]	//!< PINSEL8--->P4[15:0]  NOT USED
 #define		PINSEL9		PINSEL[9]	//!< PINSEL9--->P4[31:16](0x4002C024)
-
 //!< ----------- Estados de PINSEL:
 #define		PINSEL_GPIO			0
 #define		PINSEL_FUNC1		1
@@ -51,7 +50,6 @@ typedef unsigned char uint8_t;
 #define		PINMODE6	PINMODE[6]		//!< 0x4002C058
 #define		PINMODE7	PINMODE[7]		//!< 0x4002C05C
 #define		PINMODE9	PINMODE[9]		//!< 0x4002C064
-
 //!< ----------- Estados de PINMODE
 //!< 00	Pull Up resistor enable (reset value)		01	repeated mode enable
 //!< 11	Pull Down resistor enable					10	ni Pull Up ni Pull DOwn
@@ -100,31 +98,26 @@ typedef unsigned char uint8_t;
 #define		FIO2DIR		GPIOs[16]	//!< 0x2009C040
 #define		FIO3DIR		GPIOs[24]	//!< 0x2009C060
 #define		FIO4DIR		GPIOs[32]	//!< 0x2009C080
-
 #define		FIO0MASK	GPIOs[4]	//!< 0x2009C010
 #define		FIO1MASK	GPIOs[12]	//!< 0x2009C030
 #define		FIO2MASK	GPIOs[20]	//!< 0x2009C050
 #define		FIO3MASK	GPIOs[28]	//!< 0x2009C070
 #define		FIO4MASK	GPIOs[36]	//!< 0x2009C090
-
 #define		FIO0PIN		GPIOs[5]	//!< 0x2009C014
 #define		FIO1PIN		GPIOs[13]	//!< 0x2009C034
 #define		FIO2PIN		GPIOs[21]	//!< 0x2009C054
 #define		FIO3PIN		GPIOs[29]	//!< 0x2009C074
 #define		FIO4PIN		GPIOs[37]	//!< 0x2009C094
-
 #define		FIO0SET		GPIOs[6]	//!< 0x2009C018
 #define		FIO1SET		GPIOs[14]	//!< 0x2009C038
 #define		FIO2SET		GPIOs[22]	//!< 0x2009C058
 #define		FIO3SET		GPIOs[30]	//!< 0x2009C078
 #define		FIO4SET		GPIOs[38]	//!< 0x2009C098
-
 #define		FIO0CLR		GPIOs[7]	//!< 0x2009C01C
 #define		FIO1CLR		GPIOs[15]	//!< 0x2009C03C
 #define		FIO2CLR		GPIOs[23]	//!< 0x2009C05C
 #define		FIO3CLR		GPIOs[31]	//!< 0x2009C07C
 #define		FIO4CLR		GPIOs[39]	//!< 0x2009C09C
-
 // dirección en FIODIR
 #define 	ENTRADA			0
 #define 	SALIDA			1
@@ -222,6 +215,40 @@ typedef unsigned char uint8_t;
 #define		IO2IntEnF_ 		( ( __RW uint32_t  * ) 0x400280B4UL )
 #define		IO2IntEnF		IO2IntEnF_[0]
 
+/*
+//-----------------------------------------------------------------------------
+// ADC
+//-----------------------------------------------------------------------------
+#define		ADCR_ 		( ( __RW uint32_t  * ) 0x40034000UL )
+#define		ADCR		ADCR_[0]
+#define		ADGDR		ADCR_[1]
+
+#define		ADINTEN_ 		( ( __RW uint32_t  * ) 0x4003400CUL )
+#define		ADINTEN		ADINTEN_[0]
+
+#define		ADDR 		( ( __RW uint32_t  * ) 0x40034010UL )
+#define		ADDR0		ADDR[0]
+#define		ADDR1		ADDR[1]
+#define		ADDR2		ADDR[2]
+#define		ADDR3		ADDR[3]
+#define		ADDR4		ADDR[4]
+#define		ADDR5		ADDR[5]
+#define		ADDR6		ADDR[6]
+#define		ADDR7		ADDR[7]
+#define		ADSTAT		ADDR[8]
+#define		ADTRM		ADDR[9]
+*/
+/*
+//-----------------------------------------------------------------------------
+// DAC
+//-----------------------------------------------------------------------------
+#define		DACR_ 		( ( __RW uint32_t  * ) 0x4008C000UL )
+#define		DACR		DACR_[0]
+#define		DACCTRL		DACR_[1]
+#define		DACCNTVAL	DACR_[2]
+*/
+
+
 //!< ///////////////////   PCONP   //////////////////////////
 //!<  Power Control for Peripherals register (PCONP - 0x400F C0C4) [pag. 62 user manual LPC1769]
 //!< 0x400FC0C4UL : Direccion de inicio del registro de habilitación de dispositivos:
@@ -266,62 +293,9 @@ typedef struct {
 #define		STCURR		DIR_SYSTICK->_STCURR
 #define		STCALIB		DIR_SYSTICK->_STCALIB
 
-#define 	N 		10	//Si N=1, Systick interrumpe cada 10ms.
+#define 	N 		1	//Si N=1, Systick interrumpe cada 10ms.
 
-//!< /////////////		TIMER0		///////////////////////////
-#define		TIMER0			( ( __RW uint32_t  * ) 0x40004000UL )
 
-#define		T0IR			TIMER0[ 0 ]			/** IR - INTERRUPT REGISTER */
-#define		IRMR0		0
-#define		IRMR1		1
-#define		IRMR2		2
-#define		IRMR3		3
-#define		IRCR0		4
-#define		IRCR1		5
-#define		T0TCR			TIMER0[ 1 ]			/** TCR - TIMER CONTROL REGISTER */
-#define		CE		0
-#define		CR		1
-#define		T0TC			TIMER0[ 2 ]			/** TC - TIMER COUNTER REGISTER */
-#define		T0PR			TIMER0[ 3 ]			/** PR - PRESCALE REGISTER */
-#define		T0PC			TIMER0[ 4 ]			/** PC - PRESCALE COUNTER REGISTER */
-#define		T0MCR			TIMER0[ 5 ]			/** MCR - MATCH CONTROL REGISTER */
-#define		MR0I		0
-#define		MR0R		1
-#define		MR0S		2
-#define		MR1I		3
-#define		MR1R		4
-#define		MR1S		5
-#define		MR2I		6
-#define		MR2R		7
-#define		MR2S		8
-#define		MR3I		9
-#define		MR3R		10
-#define		MR3S		11
-#define		T0MR0			TIMER0[ 6 ]			/** MR - MATCH CONTROL REGISTER */
-#define		T0MR1			TIMER0[ 7 ]
-#define		T0MR2			TIMER0[ 8 ]
-#define		T0MR3			TIMER0[ 9 ]
-#define		T0CCR			TIMER0[ 10 ]
-#define		T0CR0			TIMER0[ 11 ]
-#define		T0CR1			TIMER0[ 12 ]
-//los siguientes dos registros NO estan contigüos. Por ende no se continúa con el offset
-#define		T0EMR			( * ( ( __RW uint32_t  * ) 0x4000403CUL ) )
-#define		T0CTCR			( * ( ( __RW uint32_t  * ) 0x40004070UL ) )/** CTCR - COUNT CONTROL REGISTER */
-#define		TCM		0
-#define		CIS		2
-// NVIC ----------------------------------------------------------------------------------------------
-#define		NVIC_TIMER0		1
-#define		NVIC_TIMER1		2
-// Nested Vectored Interrupt Controller (NVIC)
-
-// Registros ISER:
-#define		ISER0		ISER[0]
-#define		ISER1		ISER[1]
-
-// Registros ICER:
-#define		ICER0		ICER[0]
-#define		ICER1		ICER[1]
-//!< /////////////		FIN TIMER0		///////////////////////////
 
 //!< /////////////		UARTs		///////////////////////////
 //0x40010000UL : Registro de recepcion de la UART0:
@@ -347,5 +321,7 @@ typedef struct {
 #define		U1IIR		DIR_UART1[2]
 #define		U1LCR		DIR_UART1[3]
 #define		U1LSR		DIR_UART1[5]
+
+
 
 #endif /* REGS_H_ */

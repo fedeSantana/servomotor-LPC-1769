@@ -5,25 +5,37 @@
  *      Author: Tauro
  */
 
-#include <DR_Systick.h>
-#include "inicializacion.h"
 #include "mqe.h"
+
 
 extern int flagTimerOver;
 extern int tiempo;
 extern State state;
 
 
+
+
 void SysTick_Handler(void)
 {
+	/*
 	if (state.timerAperturaActive == TRUE){
 		state.counter--;
-		if (state.counter <= 0 && state.aperturaEnd == FALSE){
+		if ((state.counter == 0) && (state.aperturaEnd == FALSE))
+		{
 			state.aperturaEnd = TRUE;
 			state.timerAperturaActive = FALSE;
+			state.counter = 300;
 		}
 		else {
 		// No deberia entrar aca
 		}
 	}
+	*/
+
 }
+
+
+
+
+
+
