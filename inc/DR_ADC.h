@@ -125,9 +125,9 @@ typedef struct
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES
  **********************************************************************************************************************************/
-static volatile uint32_t ADC_buffer[4095];
-static volatile uint32_t ADC_buffer_index = 0;
-static volatile uint32_t ADC_average = 0;
+//static volatile uint32_t ADC_buffer[4095];
+//static volatile uint32_t ADC_buffer_index = 0;
+//static volatile uint32_t ADC_average = 0;
 
 /***********************************************************************************************************************************
  *** PROTOTIPOS DE FUNCIONES GLOBALES

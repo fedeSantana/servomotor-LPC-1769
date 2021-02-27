@@ -34,12 +34,6 @@ Discarded input sections
  .text          0x00000000        0x0 ./primitivas/mqe_motor.o
  .data          0x00000000        0x0 ./primitivas/mqe_motor.o
  .bss           0x00000000        0x0 ./primitivas/mqe_motor.o
- .bss.ADC_buffer
-                0x00000000     0x3ffc ./primitivas/mqe_motor.o
- .bss.ADC_buffer_index
-                0x00000000        0x4 ./primitivas/mqe_motor.o
- .bss.ADC_average
-                0x00000000        0x4 ./primitivas/mqe_motor.o
  .debug_macro   0x00000000      0xaa8 ./primitivas/mqe_motor.o
  .debug_macro   0x00000000       0x10 ./primitivas/mqe_motor.o
  .debug_macro   0x00000000       0x3a ./primitivas/mqe_motor.o
@@ -99,12 +93,6 @@ Discarded input sections
  .text          0x00000000        0x0 ./driver/Inic.o
  .data          0x00000000        0x0 ./driver/Inic.o
  .bss           0x00000000        0x0 ./driver/Inic.o
- .bss.ADC_buffer
-                0x00000000     0x3ffc ./driver/Inic.o
- .bss.ADC_buffer_index
-                0x00000000        0x4 ./driver/Inic.o
- .bss.ADC_average
-                0x00000000        0x4 ./driver/Inic.o
  .debug_macro   0x00000000      0xaa8 ./driver/Inic.o
  .debug_macro   0x00000000      0x4b9 ./driver/Inic.o
  .debug_macro   0x00000000      0x413 ./driver/Inic.o
@@ -221,7 +209,7 @@ END GROUP
                 0x20084000                __top_RamAHB32 = 0x20084000
                 0x20084000                __top_RAM2 = 0x20084000
 
-.text           0x00000000      0x864
+.text           0x00000000      0x870
  FILL mask 0xff
                 0x00000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -230,10 +218,10 @@ END GROUP
                 0x000000cc                . = ALIGN (0x4)
                 0x000000cc                __section_table_start = .
                 0x000000cc                __data_section_table = .
-                0x000000cc        0x4 LONG 0x864 LOADADDR (.data)
+                0x000000cc        0x4 LONG 0x870 LOADADDR (.data)
                 0x000000d0        0x4 LONG 0x10000000 ADDR (.data)
                 0x000000d4        0x4 LONG 0x1c SIZEOF (.data)
-                0x000000d8        0x4 LONG 0x864 LOADADDR (.data_RAM2)
+                0x000000d8        0x4 LONG 0x870 LOADADDR (.data_RAM2)
                 0x000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x000000e4                __data_section_table_end = .
@@ -335,52 +323,52 @@ END GROUP
  .text.InicPLL  0x00000558      0x140 ./driver/Oscilador.o
                 0x00000558                InicPLL
  .text.ADC_init
-                0x00000698       0xe8 ./driver/adc.o
+                0x00000698       0xf4 ./driver/adc.o
                 0x00000698                ADC_init
  .text.ADC_get_average
-                0x00000780       0x14 ./driver/adc.o
-                0x00000780                ADC_get_average
+                0x0000078c       0x14 ./driver/adc.o
+                0x0000078c                ADC_get_average
  .text.ADC_IRQHandler
-                0x00000794       0xa4 ./driver/adc.o
-                0x00000794                ADC_IRQHandler
+                0x000007a0       0xa4 ./driver/adc.o
+                0x000007a0                ADC_IRQHandler
  .text.EINT0_IRQHandler
-                0x00000838       0x28 ./driver/extint.o
-                0x00000838                EINT0_IRQHandler
+                0x00000844       0x28 ./driver/extint.o
+                0x00000844                EINT0_IRQHandler
  .text.__weak_main
-                0x00000860        0x4 c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
-                0x00000860                __weak_main
-                0x00000860                __main
+                0x0000086c        0x4 c:/nxp/mcuxpressoide_11.3.0_5222/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.3.0.202008311133/tools/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libcr_c.a(__weak__main.o)
+                0x0000086c                __weak_main
+                0x0000086c                __main
  *(.rodata .rodata.* .constdata .constdata.*)
-                0x00000864                . = ALIGN (0x4)
+                0x00000870                . = ALIGN (0x4)
 
-.glue_7         0x00000864        0x0
- .glue_7        0x00000864        0x0 linker stubs
+.glue_7         0x00000870        0x0
+ .glue_7        0x00000870        0x0 linker stubs
 
-.glue_7t        0x00000864        0x0
- .glue_7t       0x00000864        0x0 linker stubs
+.glue_7t        0x00000870        0x0
+ .glue_7t       0x00000870        0x0 linker stubs
 
-.vfp11_veneer   0x00000864        0x0
- .vfp11_veneer  0x00000864        0x0 linker stubs
+.vfp11_veneer   0x00000870        0x0
+ .vfp11_veneer  0x00000870        0x0 linker stubs
 
-.v4_bx          0x00000864        0x0
- .v4_bx         0x00000864        0x0 linker stubs
+.v4_bx          0x00000870        0x0
+ .v4_bx         0x00000870        0x0 linker stubs
 
-.iplt           0x00000864        0x0
- .iplt          0x00000864        0x0 ./src/cr_startup_lpc175x_6x.o
+.iplt           0x00000870        0x0
+ .iplt          0x00000870        0x0 ./src/cr_startup_lpc175x_6x.o
 
-.rel.dyn        0x00000864        0x0
- .rel.iplt      0x00000864        0x0 ./src/cr_startup_lpc175x_6x.o
+.rel.dyn        0x00000870        0x0
+ .rel.iplt      0x00000870        0x0 ./src/cr_startup_lpc175x_6x.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x00000864        0x0
-                0x00000864                __exidx_start = .
+.ARM.exidx      0x00000870        0x0
+                0x00000870                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00000864                __exidx_end = .
-                0x00000864                _etext = .
+                0x00000870                __exidx_end = .
+                0x00000870                _etext = .
 
-.data_RAM2      0x2007c000        0x0 load address 0x00000864
+.data_RAM2      0x2007c000        0x0 load address 0x00000870
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM2 = .)
                 [!provide]                PROVIDE (__start_data_RamAHB32 = .)
@@ -401,7 +389,7 @@ END GROUP
                 0x10000000                . = ALIGN (0x4)
                 0x10000000                _end_uninit_RESERVED = .
 
-.data           0x10000000       0x1c load address 0x00000864
+.data           0x10000000       0x1c load address 0x00000870
  FILL mask 0xff
                 0x10000000                _data = .
                 [!provide]                PROVIDE (__start_data_RAM = .)
@@ -420,7 +408,7 @@ END GROUP
                 [!provide]                PROVIDE (__end_data_RAM = .)
                 [!provide]                PROVIDE (__end_data_RamLoc32 = .)
 
-.igot.plt       0x1000001c        0x0 load address 0x00000880
+.igot.plt       0x1000001c        0x0 load address 0x0000088c
  .igot.plt      0x1000001c        0x0 ./src/cr_startup_lpc175x_6x.o
 
 .bss_RAM2       0x2007c000        0x0
@@ -478,34 +466,34 @@ END GROUP
                 0x10008000                PROVIDE (_vStackTop = DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc32 - 0x0))
                 0xefff74da                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
                 0x00000000                _image_start = LOADADDR (.text)
-                0x00000880                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x00000880                _image_size = (_image_end - _image_start)
+                0x0000088c                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x0000088c                _image_size = (_image_end - _image_start)
 OUTPUT(motor.axf elf32-littlearm)
 LOAD linker stubs
 
-.debug_info     0x00000000      0xf06
+.debug_info     0x00000000      0xe69
  .debug_info    0x00000000      0x276 ./src/cr_startup_lpc175x_6x.o
  .debug_info    0x00000276       0x40 ./src/crp.o
  .debug_info    0x000002b6       0x5c ./src/motor3.o
- .debug_info    0x00000312      0x14a ./primitivas/mqe_motor.o
- .debug_info    0x0000045c       0xdb ./driver/CONFIG.o
- .debug_info    0x00000537       0xe9 ./driver/DR_Systick.o
- .debug_info    0x00000620      0x1e5 ./driver/Inic.o
- .debug_info    0x00000805       0x5d ./driver/Oscilador.o
- .debug_info    0x00000862      0x5cc ./driver/adc.o
- .debug_info    0x00000e2e       0xd8 ./driver/extint.o
+ .debug_info    0x00000312       0xf9 ./primitivas/mqe_motor.o
+ .debug_info    0x0000040b       0xdb ./driver/CONFIG.o
+ .debug_info    0x000004e6       0xe9 ./driver/DR_Systick.o
+ .debug_info    0x000005cf      0x199 ./driver/Inic.o
+ .debug_info    0x00000768       0x5d ./driver/Oscilador.o
+ .debug_info    0x000007c5      0x5cc ./driver/adc.o
+ .debug_info    0x00000d91       0xd8 ./driver/extint.o
 
-.debug_abbrev   0x00000000      0x6bd
+.debug_abbrev   0x00000000      0x677
  .debug_abbrev  0x00000000      0x12a ./src/cr_startup_lpc175x_6x.o
  .debug_abbrev  0x0000012a       0x38 ./src/crp.o
  .debug_abbrev  0x00000162       0x49 ./src/motor3.o
- .debug_abbrev  0x000001ab       0xd1 ./primitivas/mqe_motor.o
- .debug_abbrev  0x0000027c       0x89 ./driver/CONFIG.o
- .debug_abbrev  0x00000305       0x8b ./driver/DR_Systick.o
- .debug_abbrev  0x00000390      0x103 ./driver/Inic.o
- .debug_abbrev  0x00000493       0x4b ./driver/Oscilador.o
- .debug_abbrev  0x000004de      0x154 ./driver/adc.o
- .debug_abbrev  0x00000632       0x8b ./driver/extint.o
+ .debug_abbrev  0x000001ab       0xae ./primitivas/mqe_motor.o
+ .debug_abbrev  0x00000259       0x89 ./driver/CONFIG.o
+ .debug_abbrev  0x000002e2       0x8b ./driver/DR_Systick.o
+ .debug_abbrev  0x0000036d       0xe0 ./driver/Inic.o
+ .debug_abbrev  0x0000044d       0x4b ./driver/Oscilador.o
+ .debug_abbrev  0x00000498      0x154 ./driver/adc.o
+ .debug_abbrev  0x000005ec       0x8b ./driver/extint.o
 
 .debug_aranges  0x00000000      0x1e8
  .debug_aranges
@@ -564,38 +552,38 @@ LOAD linker stubs
  .debug_macro   0x00001968       0x45 ./driver/adc.o
  .debug_macro   0x000019ad       0x32 ./driver/extint.o
 
-.debug_line     0x00000000      0xc0b
+.debug_line     0x00000000      0xc36
  .debug_line    0x00000000      0x15f ./src/cr_startup_lpc175x_6x.o
  .debug_line    0x0000015f       0xb1 ./src/crp.o
- .debug_line    0x00000210      0x14a ./src/motor3.o
- .debug_line    0x0000035a      0x137 ./primitivas/mqe_motor.o
- .debug_line    0x00000491      0x11a ./driver/CONFIG.o
- .debug_line    0x000005ab       0x96 ./driver/DR_Systick.o
- .debug_line    0x00000641      0x1af ./driver/Inic.o
- .debug_line    0x000007f0      0x1bb ./driver/Oscilador.o
- .debug_line    0x000009ab      0x1b9 ./driver/adc.o
- .debug_line    0x00000b64       0xa7 ./driver/extint.o
+ .debug_line    0x00000210      0x153 ./src/motor3.o
+ .debug_line    0x00000363      0x140 ./primitivas/mqe_motor.o
+ .debug_line    0x000004a3      0x11a ./driver/CONFIG.o
+ .debug_line    0x000005bd       0x96 ./driver/DR_Systick.o
+ .debug_line    0x00000653      0x1b8 ./driver/Inic.o
+ .debug_line    0x0000080b      0x1bb ./driver/Oscilador.o
+ .debug_line    0x000009c6      0x1c9 ./driver/adc.o
+ .debug_line    0x00000b8f       0xa7 ./driver/extint.o
 
-.debug_str      0x00000000     0x5bfb
+.debug_str      0x00000000     0x5c3a
  .debug_str     0x00000000     0x2f75 ./src/cr_startup_lpc175x_6x.o
                                0x2f88 (size before relaxing)
  .debug_str     0x00002f75       0xe9 ./src/crp.o
                                0x2e95 (size before relaxing)
- .debug_str     0x0000305e     0x119e ./src/motor3.o
-                               0x3f6b (size before relaxing)
- .debug_str     0x000041fc     0x11d0 ./primitivas/mqe_motor.o
-                               0x4ce5 (size before relaxing)
- .debug_str     0x000053cc       0x49 ./driver/CONFIG.o
+ .debug_str     0x0000305e     0x11dd ./src/motor3.o
+                               0x3f74 (size before relaxing)
+ .debug_str     0x0000423b     0x11a8 ./primitivas/mqe_motor.o
+                               0x4cc6 (size before relaxing)
+ .debug_str     0x000053e3       0x49 ./driver/CONFIG.o
                                0x4982 (size before relaxing)
- .debug_str     0x00005415       0x2c ./driver/DR_Systick.o
+ .debug_str     0x0000542c       0x2c ./driver/DR_Systick.o
                                0x2ec3 (size before relaxing)
- .debug_str     0x00005441      0x564 ./driver/Inic.o
-                               0x51c3 (size before relaxing)
- .debug_str     0x000059a5       0x1e ./driver/Oscilador.o
+ .debug_str     0x00005458      0x564 ./driver/Inic.o
+                               0x51a4 (size before relaxing)
+ .debug_str     0x000059bc       0x1e ./driver/Oscilador.o
                                0x4190 (size before relaxing)
- .debug_str     0x000059c3      0x214 ./driver/adc.o
-                               0x4bd0 (size before relaxing)
- .debug_str     0x00005bd7       0x24 ./driver/extint.o
+ .debug_str     0x000059da      0x23c ./driver/adc.o
+                               0x4bd9 (size before relaxing)
+ .debug_str     0x00005c16       0x24 ./driver/extint.o
                                0x3d6c (size before relaxing)
 
 .comment        0x00000000       0x4c

@@ -1,0 +1,5 @@
+adc.c:67:6:ADC_init	8	static
+adc.c:107:6:ADC_start_conversion	0	static
+adc.c:118:10:ADC_get_average	0	static
+adc.c:129:6:ADC_IRQHandler	12	static
+adc.c:154:6:TimeADC	0	static

@@ -1,8 +1,8 @@
+/*******************************************************************************************************************************//**
 
-/*
  * mqe_motor.c
  *
- *  Created on: 11 dic. 2020
+ *  Created on: 12 dic. 2020
  *      Author: fer_o
 
  *
@@ -13,7 +13,8 @@
  **********************************************************************************************************************************/
 #include "DR_ADC.h"
 #include "RegsLPC1769.h"
-#include "Inicializacion.h"
+#include"Inicializacion.h"
+
 
 /***********************************************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
@@ -44,11 +45,11 @@ static volatile ADC_per_t *ADC = ADC_BASE;
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
 
-/***********************************************************************************************************************************
+ /***********************************************************************************************************************************
  *** FUNCIONES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
 
-/***********************************************************************************************************************************
+ /***********************************************************************************************************************************
  *** FUNCIONES GLOBALES AL MODULO
  **********************************************************************************************************************************/
 
@@ -59,6 +60,10 @@ static volatile ADC_per_t *ADC = ADC_BASE;
 	\return No hay retorno
 */
 
+static volatile uint32_t ADC_buffer[4095];
+static volatile uint32_t ADC_buffer_index = 0;
+static volatile uint32_t ADC_average = 0;
+
 void ADC_init(void)
 {
 	PCONP |= (1 << 12);
@@ -68,10 +73,11 @@ void ADC_init(void)
 
 	ADC->ADCR.PDN = 1;
 
-	SetPINSEL(0, 25, 1); //Leer entrada
-						 //	SetPINSEL(1,31,3); //Potenciometro
+	SetPINSEL(0,25,1); //Leer entrada
+//	SetPINSEL(1,31,3); //Potenciometro
 
 	ADC->ADCR.START = 0;
+	ADC->ADCR.BURST = 1;
 
 	// f_ADC = (f_CPU / div_PCLKSEL) / ((div_ADC + 1) * 65) = 192KHz
 	ADC->ADCR.CLKDIV = 1;
@@ -132,7 +138,7 @@ void ADC_IRQHandler(void)
 	ADC_buffer_index++;
 	ADC_buffer_index %= 4095;
 
-	if (!ADC_buffer_index)
+	if(!ADC_buffer_index)
 	{
 		ADC_average = acummulator / 4095;
 		acummulator = 0;
@@ -150,9 +156,9 @@ void TimeADC(void)
 	static uint32_t adc_counter = 0;
 
 	adc_counter++;
-	adc_counter %= 10; //Cantidad de ms
+	adc_counter %= 10;//Cantidad de ms
 
-	if (!adc_counter)
+	if(!adc_counter)
 	{
 		ADC_start_conversion();
 	}
