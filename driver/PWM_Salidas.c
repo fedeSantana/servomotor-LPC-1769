@@ -8,6 +8,7 @@
 #include "RegsLPC1769.h"
 #include "Register_PWM.h"
 #include "PWM.h"
+#include "mqe.h"
 
 
 
