@@ -6,20 +6,21 @@
  */
 
 #include "mqe.h"
-#include "DR_ADC.h"
 #include "Regs_LPC176x.h"
 #include "RegsLPC1769.h"
+#include "teclado.h"
+#include "DR_ADC.h"
 
-#define MAX_MUESTRA 4095
+static volatile ADC_per_t *ADC = ADC_BASE;
+
 #define BUFFER_TX_SIZE	32
 #define BUFFER_RX_SIZE	32
-static volatile ADC_per_t *ADC = ADC_BASE;
+
+
+uint8_t txEnCurso;
 static volatile uint32_t ADC_buffer[4095];
 static volatile uint32_t ADC_buffer_index = 0;
-static  uint32_t ADC_average = 0;
-
-int muestras = 4096;
-uint8_t txEnCurso;
+static uint32_t ADC_average = 0;
 extern State state;
 extern uint8_t tx_in, tx_out;
 // Índices de Recepción
@@ -28,6 +29,13 @@ extern uint8_t rx_in, rx_out;
 extern uint8_t bufferTx[BUFFER_TX_SIZE];
 // Buffer de Recepción
 extern uint8_t bufferRx[BUFFER_RX_SIZE];
+/*
+void EINT0_IRQHandler(void)
+{
+	EXTINT |= 0x1 << 0; // Limpio el flag de la EINT0 escribiendo un UNO.
+	state.dato = OK;
+}
+*/
 
 void SysTick_Handler(void)
 {
@@ -37,38 +45,17 @@ void SysTick_Handler(void)
 		{
 			state.aperturaEnd = TRUE;
 			state.timerAperturaActive = FALSE;
-			state.counter = 300;
+			state.counter = DELAY;
 		}
 		else {
 		// No deberia entrar aca
 		}
 	}
-	void DriverTeclado(void);
+	DriverTeclado();
+
 }
 
-void ADC_IRQHandler(void)
-{
-	static uint32_t acummulator = 0;
 
-	ADDR_reg_t ADDR2 = ADC->ADDR[2];
-
-	ADC_buffer[ADC_buffer_index] = ADDR2.RESULT;
-	acummulator += ADC_buffer[ADC_buffer_index];
-
-	ADC_buffer_index++;
-	ADC_buffer_index %= MAX_MUESTRA;
-
-	if(!ADC_buffer_index)
-	{
-		ADC_average = acummulator / MAX_MUESTRA;
-		acummulator = 0;
-	}
-}
-
-uint32_t ADC_get_average(void)
-{
-	return ADC_average;
-}
 
 void UART0_IRQHandler (void)
 {
@@ -113,4 +100,28 @@ void UART0_StartTx(void)
 	tx_out %= BUFFER_TX_SIZE;
 	// transmito el dato
 	U0THR = dato;
+}
+
+void ADC_IRQHandler(void)
+{
+	static uint32_t acummulator = 0;
+
+	ADDR_reg_t ADDR2 = ADC->ADDR[2];
+
+	ADC_buffer[ADC_buffer_index] = ADDR2.RESULT;
+	acummulator += ADC_buffer[ADC_buffer_index];
+
+	ADC_buffer_index++;
+	ADC_buffer_index %= 4095;
+
+	if (!ADC_buffer_index)
+	{
+		ADC_average = acummulator / 4095;
+		acummulator = 0;
+	}
+}
+
+uint32_t ADC_get_average(void)
+{
+	return ADC_average;
 }

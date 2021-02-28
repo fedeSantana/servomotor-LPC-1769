@@ -23,6 +23,7 @@ void SetPIN( uint8_t puerto , uint8_t pin , uint8_t estado );
 uint8_t GetPIN( uint8_t puerto , uint8_t pin , uint8_t actividad );
 void SetPINSEL( uint8_t puerto , uint8_t pin ,uint8_t funcion );
 void SetPINMODE( uint8_t port , uint8_t pin ,uint8_t modo);
-void ADC_init(void);
+void Init_EINT0(void);
+void Inicializar_Teclado(void);
 
 #endif /* INICIALIZACION_H_ */

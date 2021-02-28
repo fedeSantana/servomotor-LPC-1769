@@ -11,9 +11,10 @@
 #include"RegsLPC1769.h"
 #include"Regs_LPC176x.h"
 #include "DR_ADC.h"
-#include "RegsLPC1769.h"
-static volatile ADC_per_t *ADC = ADC_BASE;
+#include"teclado.h"
 
+
+static volatile ADC_per_t *ADC = ADC_BASE;
 
 void Inicializacion(void)
 {
@@ -21,9 +22,75 @@ void Inicializacion(void)
 	Init_GPIO_PWM();
 	Init_PWM();
 	Init_Systick();
-	InitUART0();
+	//InitUART0();
+	//Init_EINT0();
 	ADC_init();
+	Inicializar_Teclado();
 
+}
+
+void Inicializar_Teclado( void )
+{
+	SetPINSEL ( Infotronic_KEY0 , PINSEL_GPIO);
+	SetPINSEL ( Infotronic_KEY1 , PINSEL_GPIO);
+	SetPINSEL ( Infotronic_KEY2 , PINSEL_GPIO);
+	SetPINSEL ( Infotronic_KEY3_RC , PINSEL_GPIO);
+	SetPINSEL ( Infotronic_KEY4_RC , PINSEL_GPIO);
+
+	SetDIR ( Infotronic_KEY0 , ENTRADA);
+	SetDIR ( Infotronic_KEY1 , ENTRADA);
+	SetDIR ( Infotronic_KEY2 , ENTRADA);
+	SetDIR ( Infotronic_KEY3_RC , ENTRADA);
+	SetDIR ( Infotronic_KEY4_RC , ENTRADA);
+
+	SetPINMODE ( Infotronic_KEY0 , PINMODE_PULLUP);
+	SetPINMODE ( Infotronic_KEY1 , PINMODE_PULLUP);
+	SetPINMODE ( Infotronic_KEY2 , PINMODE_PULLUP);
+	SetPINMODE ( Infotronic_KEY3_RC , PINMODE_PULLUP);
+}
+/*
+void Init_EINT0(void)
+{
+	SetPINSEL(2,10,1);
+	ISER0 |= 0x01 << 18;
+	EXTINT |= 0x01 << 0;
+	EXTMODE |= 0x01 << 0;
+	EXTPOLAR &= 0x01 << 0;
+
+}
+*/
+
+void ADC_init(void)
+{
+	PCONP |= (1 << 12);
+
+	// div_PCLKSEL
+	PCLKSEL0 &= ~(0x03 << 24);
+
+	ADC->ADCR.PDN = 1;
+
+	SetPINSEL(0, 25, 1); //Leer entrada
+						 //	SetPINSEL(1,31,3); //Potenciometro
+
+	ADC->ADCR.START = 0;
+	ADC->ADCR.BURST = 1;
+
+	// f_ADC = (f_CPU / div_PCLKSEL) / ((div_ADC + 1) * 65) = 192KHz
+	ADC->ADCR.CLKDIV = 1;
+
+	ADC->ADCR.SEL = (1 << 2);
+
+	ADC->ADINTEN.ADINTEN0 = 0;
+	ADC->ADINTEN.ADINTEN1 = 0;
+	ADC->ADINTEN.ADINTEN2 = 1;
+	ADC->ADINTEN.ADINTEN3 = 0;
+	ADC->ADINTEN.ADINTEN4 = 0;
+	ADC->ADINTEN.ADINTEN5 = 0;
+	ADC->ADINTEN.ADINTEN6 = 0;
+	ADC->ADINTEN.ADINTEN7 = 0;
+	ADC->ADINTEN.ADGINTEN = 0;
+
+	ISER0 |= (1 << 22);
 }
 
 void InitUART0(void)
@@ -50,38 +117,7 @@ void InitUART0(void)
 	ISER0 |= (1<<5);
 
 }
-void ADC_init(void)
-{
-	PCONP |= (1 << 12);
 
-	// div_PCLKSEL
-	PCLKSEL0 &= ~(0x03 << 24);
-
-	ADC->ADCR.PDN = 1;
-
-	SetPINSEL(0,25,1); //Leer entrada
-//	SetPINSEL(1,31,3); //Potenciometro
-
-	ADC->ADCR.START = 0;
-	ADC->ADCR.BURST = 1;
-
-	// f_ADC = (f_CPU / div_PCLKSEL) / ((div_ADC + 1) * 65) = 192KHz
-	ADC->ADCR.CLKDIV = 1;
-
-	ADC->ADCR.SEL = (1 << 2);
-
-	ADC->ADINTEN.ADINTEN0 = 0;
-	ADC->ADINTEN.ADINTEN1 = 0;
-	ADC->ADINTEN.ADINTEN2 = 1;
-	ADC->ADINTEN.ADINTEN3 = 0;
-	ADC->ADINTEN.ADINTEN4 = 0;
-	ADC->ADINTEN.ADINTEN5 = 0;
-	ADC->ADINTEN.ADINTEN6 = 0;
-	ADC->ADINTEN.ADINTEN7 = 0;
-	ADC->ADINTEN.ADGINTEN = 0;
-
-	ISER0 |= (1 << 22);
-}
 void InicPLL(void)
 {
 		SCS       = SCS_Value;
@@ -169,9 +205,8 @@ void Init_PWM(void)
 	PWM_TCR = (1<<0) | (1<<3);	// Habilitar contador y modo PWM
 
 }
-void Init_Systick(void)
+void Init_Systick( void )
 {
 	STRELOAD = (STCALIB/N) - 1; // 10 miliseg con PLL a 100 MHZ.
 	STCTRL = 0x07;				// Clock sistema, interrupción habilitada, systick habilitado.
-
 }

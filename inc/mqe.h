@@ -17,6 +17,10 @@
 #define TRUE            1
 #define	DIEZ		10000
 #define NO_KEY		255
+#define MAX_TEMPERATURA 37
+#define MIN_TEMPERATURA 35
+
+
 
 //!< Definicion de Estados
 #define	APERTURA		0
@@ -27,6 +31,8 @@
 #define	MOTOR			5
 #define DELAY			1000
 #define START_TX()	(PopTx((uint8_t*)&U0THR))
+#define NO_ABRIR 6
+#define	TRAMA			7
 
 void Aplicacion(void);
 void UART0_StartTx(void);
@@ -34,15 +40,17 @@ void mqe_motor (void);
 void Iniciar_apertura( void );
 void Iniciar_cerrando( void );
 uint8_t Teclado( void );
-//uint32_t temp(void);
+uint32_t temp(void);
+int comparacion(void);
 
 
 typedef struct State {
    int value; // Valor del estado
-   int dato; // Valor del dato, viene de QT
+   uint8_t dato; // Valor del dato, viene de QT
    int aperturaEnd; // Variable que define si terminó de abrir
    int timerAperturaActive; // Activador del timer
    int counter; // segundos que iran disminuyendo hassta
+   uint32_t temperatura;
 } State;
 
 #endif /* MQE_H_ */

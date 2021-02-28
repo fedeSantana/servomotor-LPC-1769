@@ -25,25 +25,25 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: motor.axf
+all: proyecto6.axf
 
 # Tool invocations
-motor.axf: $(OBJS) $(USER_OBJS)
+proyecto6.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -Xlinker -Map="motor.map" -Xlinker --cref -Xlinker --gc-sections -Xlinker -print-memory-usage -mcpu=cortex-m3 -mthumb -T "motor_Debug.ld" -o "motor.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -Xlinker -Map="proyecto6.map" -Xlinker --cref -Xlinker --gc-sections -Xlinker -print-memory-usage -mcpu=cortex-m3 -mthumb -T "proyecto6_Debug.ld" -o "proyecto6.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) motor.axf
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) proyecto6.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "motor.axf"; # arm-none-eabi-objcopy -v -O binary "motor.axf" "motor.bin" ; # checksum -p LPC1769 -d "motor.bin";
+	-arm-none-eabi-size "proyecto6.axf"; # arm-none-eabi-objcopy -v -O binary "proyecto6.axf" "proyecto6.bin" ; # checksum -p LPC1769 -d "proyecto6.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents post-build
