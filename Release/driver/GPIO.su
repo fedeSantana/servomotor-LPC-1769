@@ -1,3 +1,0 @@
-GPIO.c:23:6:SetDIR	8	static
-GPIO.c:40:6:SetPIN	8	static
-GPIO.c:57:9:GetPIN	0	static
