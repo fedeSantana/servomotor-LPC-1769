@@ -29,6 +29,8 @@ extern uint8_t rx_in, rx_out;
 extern uint8_t bufferTx[BUFFER_TX_SIZE];
 // Buffer de Recepción
 extern uint8_t bufferRx[BUFFER_RX_SIZE];
+
+extern int tiempo_espera;
 /*
 void EINT0_IRQHandler(void)
 {
@@ -39,6 +41,9 @@ void EINT0_IRQHandler(void)
 
 void SysTick_Handler(void)
 {
+	if(tiempo_espera > 0)
+		tiempo_espera--;
+
 	if (state.timerAperturaActive == TRUE){
 		state.counter--;
 		if ((state.counter == 0) && (state.aperturaEnd == FALSE))

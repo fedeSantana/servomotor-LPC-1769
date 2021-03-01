@@ -13,6 +13,7 @@ volatile State state = {INICIO, FALSE, FALSE, FALSE, DELAY,0};
 
 static int estado = INICIO;
 static uint8_t tecla[5];
+int tiempo_espera = 0;
 
 void Aplicacion(void)
 {
@@ -70,6 +71,7 @@ void Aplicacion(void)
 			break;
 
 		case TRAMA:
+/*
 			if (comparacion() == OK)
 			{
 				state.dato = OK;
@@ -89,17 +91,42 @@ void Aplicacion(void)
 				tecla[3] = NO_KEY;
 
 			}
-/*
-			PushTx('%');
-			PushTx(tecla[0]);
-			PushTx(tecla[1]);
-			PushTx(tecla[2]);
-			PushTx(tecla[3]);
-			PushTx(tecla[4]);
-			PushTx('#');
-
 */
+			PushTx('%');
+			PushTx(ascii(tecla[0]));
+			PushTx(ascii(tecla[1]));
+			PushTx(ascii(tecla[2]));
+			PushTx(ascii(tecla[3]));
+			PushTx(ascii(tecla[4]));
+			PushTx('#');
+			Esperar_Respuesta();
+			estado = VERIFICACION;
 			break;
+
+		case VERIFICACION:
+			if(Respuesta())
+			{
+				state.dato = PopRx();
+				if (state.dato == OK || state.dato == ascii_OK)
+				{
+					estado = MOTOR;
+					tecla[0] = NO_KEY;
+					tecla[1] = NO_KEY;
+					tecla[2] = NO_KEY;
+					tecla[3] = NO_KEY;
+				}
+				else
+				{
+					if (state.dato == FALSE || state.dato == ascii_FALSE)
+					{
+						estado = INICIO;
+						tecla[0] = NO_KEY;
+						tecla[1] = NO_KEY;
+						tecla[2] = NO_KEY;
+						tecla[3] = NO_KEY;
+					}
+				}
+			}
 
 		case MOTOR:
 			mqe_motor();
@@ -118,7 +145,7 @@ void mqe_motor ()
 	switch(state.value)
 	{
 				case INICIO:
-					if(state.dato == OK)
+					if(state.dato == OK || state.dato == ascii_OK)
 					{
 						state.value = APERTURA;
 						state.dato = FALSE;
@@ -161,20 +188,22 @@ uint32_t temp (void)
 	return ADC_get_average()/12;
 }
 
-int comparacion(void)
+void Esperar_Respuesta(void)
 {
-	if(tecla[0] != 1 )
-		return FALSE;
-	if(tecla[1] != 2 )
-		return FALSE;
-	if(tecla[2] != 3 )
-		return FALSE;
-	if(tecla[3] != 4 )
-		return FALSE;
-	if(tecla[4] != 0 )
-		return FALSE;
-
-	return OK;
+	tiempo_espera = 1000;
 
 }
 
+int Respuesta(void)
+{
+
+	if(tiempo_espera == 0)
+		return OK;
+
+	return FALSE;
+
+}
+
+char ascii (uint8_t letra){
+	return letra + '0';
+}

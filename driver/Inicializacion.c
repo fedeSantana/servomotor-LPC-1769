@@ -22,7 +22,7 @@ void Inicializacion(void)
 	Init_GPIO_PWM();
 	Init_PWM();
 	Init_Systick();
-	//InitUART0();
+	InitUART0();
 	//Init_EINT0();
 	ADC_init();
 	Inicializar_Teclado();

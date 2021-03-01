@@ -12,13 +12,15 @@
 #define BUFFER_TX_SIZE	32
 #define BUFFER_RX_SIZE	32
 
-#define	OK				1
+#define OK 1
+#define	ascii_OK		'1'
+#define ascii_FALSE     '0'
 #define	FALSE			0
 #define TRUE            1
 #define	DIEZ		10000
 #define NO_KEY		255
 #define MAX_TEMPERATURA 37
-#define MIN_TEMPERATURA 35
+#define MIN_TEMPERATURA 0
 
 
 
@@ -33,6 +35,7 @@
 #define START_TX()	(PopTx((uint8_t*)&U0THR))
 #define NO_ABRIR 6
 #define	TRAMA			7
+#define VERIFICACION 8
 
 void Aplicacion(void);
 void UART0_StartTx(void);
@@ -41,8 +44,10 @@ void Iniciar_apertura( void );
 void Iniciar_cerrando( void );
 uint8_t Teclado( void );
 uint32_t temp(void);
+char ascii (uint8_t letra);
 int comparacion(void);
-
+void Esperar_Respuesta(void);
+int Respuesta(void);
 
 typedef struct State {
    int value; // Valor del estado
