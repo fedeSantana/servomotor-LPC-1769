@@ -14,12 +14,18 @@
 
 #include <cr_section_macros.h>
 #include"Inicializacion.h"
+#include"PR_Serie.h"
 #include"mqe.h"
 
 
 int main(void)
 {
+
 	Inicializacion();
+	PushTx('h');
+	PushTx('o');
+	PushTx('l');
+	PushTx('a');
 
 
     while(1)
