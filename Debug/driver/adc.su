@@ -1,2 +1,0 @@
-adc.c:63:6:ADC_start_conversion	4	static
-adc.c:110:6:TimeADC	8	static

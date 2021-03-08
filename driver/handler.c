@@ -31,15 +31,28 @@ extern uint8_t bufferTx[BUFFER_TX_SIZE];
 extern uint8_t bufferRx[BUFFER_RX_SIZE];
 
 extern int tiempo_espera;
+<<<<<<< HEAD
 extern int tiempo_buzz;
 
+=======
+/*
+void EINT0_IRQHandler(void)
+{
+	EXTINT |= 0x1 << 0; // Limpio el flag de la EINT0 escribiendo un UNO.
+	state.dato = OK;
+}
+*/
+>>>>>>> cdaf79c27d12fadc5dcf04e81b7800bddd448cc1
 
 void SysTick_Handler(void)
 {
 	if(tiempo_espera > 0)
 		tiempo_espera--;
+<<<<<<< HEAD
 	if(tiempo_buzz > 0)
 		tiempo_buzz--;
+=======
+>>>>>>> cdaf79c27d12fadc5dcf04e81b7800bddd448cc1
 
 	if (state.timerAperturaActive == TRUE){
 		state.counter--;

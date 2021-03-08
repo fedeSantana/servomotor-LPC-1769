@@ -80,7 +80,31 @@ void Aplicacion(void)
 			break;
 
 		case TRAMA:
+<<<<<<< HEAD
 
+=======
+/*
+			if (comparacion() == OK)
+			{
+				state.dato = OK;
+				estado = MOTOR;
+				tecla[0] = NO_KEY;
+				tecla[1] = NO_KEY;
+				tecla[2] = NO_KEY;
+				tecla[3] = NO_KEY;
+
+			}
+			else
+			{
+				estado = INICIO;
+				tecla[0] = NO_KEY;
+				tecla[1] = NO_KEY;
+				tecla[2] = NO_KEY;
+				tecla[3] = NO_KEY;
+
+			}
+*/
+>>>>>>> cdaf79c27d12fadc5dcf04e81b7800bddd448cc1
 			PushTx('%');
 			PushTx(ascii(tecla[0]));
 			PushTx(ascii(tecla[1]));
@@ -90,6 +114,7 @@ void Aplicacion(void)
 			PushTx('#');
 			Esperar_Respuesta();
 			estado = VERIFICACION;
+<<<<<<< HEAD
 			break;
 
 		case VERIFICACION:
@@ -123,7 +148,34 @@ void Aplicacion(void)
 					}
 				}
 			}
+=======
+>>>>>>> cdaf79c27d12fadc5dcf04e81b7800bddd448cc1
 			break;
+
+		case VERIFICACION:
+			if(Respuesta())
+			{
+				state.dato = PopRx();
+				if (state.dato == OK || state.dato == ascii_OK)
+				{
+					estado = MOTOR;
+					tecla[0] = NO_KEY;
+					tecla[1] = NO_KEY;
+					tecla[2] = NO_KEY;
+					tecla[3] = NO_KEY;
+				}
+				else
+				{
+					if (state.dato == FALSE || state.dato == ascii_FALSE)
+					{
+						estado = INICIO;
+						tecla[0] = NO_KEY;
+						tecla[1] = NO_KEY;
+						tecla[2] = NO_KEY;
+						tecla[3] = NO_KEY;
+					}
+				}
+			}
 
 		case MOTOR:
 			mqe_motor();
@@ -219,6 +271,7 @@ uint32_t temp (void)
 }
 
 void Esperar_Respuesta(void)
+<<<<<<< HEAD
 {
 	tiempo_espera = 1000;
 
@@ -234,6 +287,23 @@ int Respuesta(void)
 
 }
 
+=======
+{
+	tiempo_espera = 1000;
+
+}
+
+int Respuesta(void)
+{
+
+	if(tiempo_espera == 0)
+		return OK;
+
+	return FALSE;
+
+}
+
+>>>>>>> cdaf79c27d12fadc5dcf04e81b7800bddd448cc1
 char ascii (uint8_t letra){
 	return letra + '0';
 }

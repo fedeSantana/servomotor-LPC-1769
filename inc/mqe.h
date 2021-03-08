@@ -36,8 +36,11 @@
 #define NO_ABRIR 6
 #define	TRAMA			7
 #define VERIFICACION 8
+<<<<<<< HEAD
 #define ON 1
 #define OFF 0
+=======
+>>>>>>> cdaf79c27d12fadc5dcf04e81b7800bddd448cc1
 
 #define BUZZER_OFF		SetPIN(BUZZ,BUZZ_OFF)
 #define BUZZER_ON		SetPIN(BUZZ,BUZZ_ON)
