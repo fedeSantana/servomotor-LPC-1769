@@ -11,6 +11,14 @@ typedef unsigned int uint32_t;
 typedef unsigned short uint16_t;
 typedef unsigned char uint8_t;
 
+#define		RGBB		2,1			//GPIO2
+#define		RGBR		2,2			//GPIO2
+#define		RGBG		2,3			//GPIO2
+#define		BUZZ		0,28		//GPIO0
+#define		BUZZ_ON		0
+#define		BUZZ_OFF	1
+
+
 void Inicializacion(void);
 void InicPLL(void);
 void Init_GPIO_PWM(void);
@@ -25,5 +33,6 @@ void SetPINSEL( uint8_t puerto , uint8_t pin ,uint8_t funcion );
 void SetPINMODE( uint8_t port , uint8_t pin ,uint8_t modo);
 void Init_EINT0(void);
 void Inicializar_Teclado(void);
-
+void inicBuzzer( void );
+void inicRGB( void );
 #endif /* INICIALIZACION_H_ */

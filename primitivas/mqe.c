@@ -13,10 +13,11 @@ volatile State state = {INICIO, FALSE, FALSE, FALSE, DELAY,0};
 
 static int estado = INICIO;
 static uint8_t tecla[5];
+int tiempo_espera = 0;
 
 void Aplicacion(void)
 {
-	static int i = 0;
+	static int i = 1;
 	state.temperatura = temp();
 	switch(estado)
 	{
@@ -27,27 +28,36 @@ void Aplicacion(void)
 			{
 				tecla[i] = KEY1;
 				i++;
+				Amarillo();
+
 			}
 			if(tecla[i] == KEY2)
 			{
 				tecla[i] = KEY2;
 				i++;
+				Azul();
+
 			}
 			if(tecla[i] == KEY3)
 			{
 				tecla[i] = KEY3;
 				i++;
+				Magenta();
 
 			}
 			if(tecla[i] == KEY4)
 			{
 				tecla[i] = KEY4;
 				i++;
+				Cian();
 			}
-			if(i == 4)
+			if(i == 5)
 			{
 				estado = TEMPERATURA;
 				i = 0;
+				RGBG_ON;
+				RGBR_OFF;
+				RGBB_OFF;
 			}
 			break;
 
@@ -55,7 +65,7 @@ void Aplicacion(void)
 
 			if(state.temperatura > MAX_TEMPERATURA)
 			{
-				tecla[4] = 1;
+				tecla[0] = 1;
 				estado = TRAMA;
 
 			}
@@ -63,42 +73,56 @@ void Aplicacion(void)
 			{
 				if(state.temperatura > MIN_TEMPERATURA)
 				{
-					tecla[4] = 0;
+					tecla[0] = 0;
 					estado = TRAMA;
 				}
 			}
 			break;
 
 		case TRAMA:
-			if (comparacion() == OK)
-			{
-				state.dato = OK;
-				estado = MOTOR;
-				tecla[0] = NO_KEY;
-				tecla[1] = NO_KEY;
-				tecla[2] = NO_KEY;
-				tecla[3] = NO_KEY;
 
-			}
-			else
-			{
-				estado = INICIO;
-				tecla[0] = NO_KEY;
-				tecla[1] = NO_KEY;
-				tecla[2] = NO_KEY;
-				tecla[3] = NO_KEY;
-
-			}
-/*
 			PushTx('%');
-			PushTx(tecla[0]);
-			PushTx(tecla[1]);
-			PushTx(tecla[2]);
-			PushTx(tecla[3]);
-			PushTx(tecla[4]);
+			PushTx(ascii(tecla[0]));
+			PushTx(ascii(tecla[1]));
+			PushTx(ascii(tecla[2]));
+			PushTx(ascii(tecla[3]));
+			PushTx(ascii(tecla[4]));
 			PushTx('#');
+			Esperar_Respuesta();
+			estado = VERIFICACION;
+			break;
 
-*/
+		case VERIFICACION:
+			if(Respuesta())
+			{
+				if (PopRx() == '%')
+				{
+					state.dato = PopRx();
+
+					if(PopRx() == '#')
+					{
+						if (state.dato == OK || state.dato == ascii_OK)
+						{
+							estado = MOTOR;
+							tecla[1] = NO_KEY;
+							tecla[2] = NO_KEY;
+							tecla[3] = NO_KEY;
+							tecla[4] = NO_KEY;
+						}
+						else
+						{
+							if (state.dato == FALSE || state.dato == ascii_FALSE)
+							{
+								estado = INICIO;
+								tecla[1] = NO_KEY;
+								tecla[2] = NO_KEY;
+								tecla[3] = NO_KEY;
+								tecla[4] = NO_KEY;
+							}
+						}
+					}
+				}
+			}
 			break;
 
 		case MOTOR:
@@ -118,7 +142,7 @@ void mqe_motor ()
 	switch(state.value)
 	{
 				case INICIO:
-					if(state.dato == OK)
+					if(state.dato == OK || state.dato == ascii_OK)
 					{
 						state.value = APERTURA;
 						state.dato = FALSE;
@@ -127,15 +151,12 @@ void mqe_motor ()
 				case APERTURA:
 					Iniciar_apertura();
 					state.timerAperturaActive = TRUE;
+					RGBG_OFF;
+					RGBR_ON;
 					state.value = INTERMEDIO;
-
-				/*	if( state.aperturaEnd )
-					{
-						state.value = CERRANDO;
-						state.aperturaEnd = FALSE;
-
-					}
-				*/
+					PushTx('%');
+					PushTx('A');
+					PushTx('#');
 					break;
 				case INTERMEDIO:
 					if(state.aperturaEnd)
@@ -146,8 +167,13 @@ void mqe_motor ()
 					break;
 				case CERRANDO:
 					Iniciar_cerrando();
+					RGBG_ON;
+					RGBR_OFF;
 					state.value = INICIO;
 					estado = INICIO;
+					PushTx('%');
+					PushTx('C');
+					PushTx('#');
 					break;
 
 				default: state.value = INICIO;
@@ -156,25 +182,58 @@ void mqe_motor ()
 
 }
 
+void Cian (void)
+{
+	RGBG_OFF;
+	RGBR_ON;
+	RGBB_ON;
+
+}
+
+void Magenta(void)
+{
+	RGBG_ON;
+	RGBR_OFF;
+	RGBB_ON;
+
+}
+
+void Amarillo(void)
+{
+	RGBG_ON;
+	RGBR_ON;
+	RGBB_OFF;
+}
+
+void Azul(void)
+{
+	RGBG_OFF;
+	RGBR_OFF;
+	RGBB_ON;
+
+}
+
 uint32_t temp (void)
 {
 	return ADC_get_average()/12;
 }
 
-int comparacion(void)
+void Esperar_Respuesta(void)
 {
-	if(tecla[0] != 1 )
-		return FALSE;
-	if(tecla[1] != 2 )
-		return FALSE;
-	if(tecla[2] != 3 )
-		return FALSE;
-	if(tecla[3] != 4 )
-		return FALSE;
-	if(tecla[4] != 0 )
-		return FALSE;
-
-	return OK;
+	tiempo_espera = 1000;
 
 }
 
+int Respuesta(void)
+{
+
+	if(tiempo_espera == 0)
+		return OK;
+
+	return FALSE;
+
+}
+
+char ascii (uint8_t letra){
+	return letra + '0';
+}

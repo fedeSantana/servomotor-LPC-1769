@@ -22,11 +22,34 @@ void Inicializacion(void)
 	Init_GPIO_PWM();
 	Init_PWM();
 	Init_Systick();
-	//InitUART0();
+	InitUART0();
 	//Init_EINT0();
 	ADC_init();
 	Inicializar_Teclado();
+	inicRGB();
+	inicBuzzer();
 
+
+}
+
+void inicBuzzer( void )
+{
+	SetPINSEL ( BUZZ , PINSEL_GPIO);
+	SetDIR ( BUZZ , SALIDA);
+	SetPIN (BUZZ, BUZZ_OFF);  //se apaga con 1
+}
+
+void inicRGB( void )
+{
+	SetPINSEL ( RGBR , PINSEL_GPIO);
+	SetPINSEL ( RGBG , PINSEL_GPIO);
+	SetPINSEL ( RGBB , PINSEL_GPIO);
+
+	SetDIR ( RGBR , SALIDA);
+	SetDIR ( RGBG , SALIDA);
+	SetDIR ( RGBB , SALIDA);
+
+	SetPIN(RGBG,0);
 }
 
 void Inicializar_Teclado( void )
@@ -48,17 +71,6 @@ void Inicializar_Teclado( void )
 	SetPINMODE ( Infotronic_KEY2 , PINMODE_PULLUP);
 	SetPINMODE ( Infotronic_KEY3_RC , PINMODE_PULLUP);
 }
-/*
-void Init_EINT0(void)
-{
-	SetPINSEL(2,10,1);
-	ISER0 |= 0x01 << 18;
-	EXTINT |= 0x01 << 0;
-	EXTMODE |= 0x01 << 0;
-	EXTPOLAR &= 0x01 << 0;
-
-}
-*/
 
 void ADC_init(void)
 {
